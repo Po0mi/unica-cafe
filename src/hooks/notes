@@ -1,0 +1,15 @@
+NAVBAR COMPONENT
+├── State: isMobile (true on phones, false on desktop)
+├── useScrollPosition() → tells us how far we've scrolled
+├── useToggle() → controls if mobile menu is open/closed
+├── useClickOutside() → closes menu when clicking outside
+├── useActiveSection() → highlights current section in navbar
+└── Render: Shows different layout for mobile vs desktop
+
+HOW IT ALL WORKS TOGETHER:
+1. When page loads → check if mobile or desktop
+2. As user scrolls → navbar gets white background after 50px
+3. On mobile → hamburger menu appears
+4. Click hamburger → menu slides down
+5. Click outside menu → menu closes automatically
+6. Scroll to sections → nav links highlight automatically
