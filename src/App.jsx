@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./layouts/navbar";
 import Hero from "./components/hero";
+import About from "./components/about";
 // Import more sections as we create them:
 // import Features from "./components/sections/features/Features";
 // import HowItWorks from "./components/sections/howitworks/HowItWorks";
@@ -15,6 +16,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <About />
       </main>
     </div>
   );

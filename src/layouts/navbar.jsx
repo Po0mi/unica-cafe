@@ -129,7 +129,6 @@ const Navbar = () => {
           onClick={(e) => handleSmoothScroll(e, "#home")}
         >
           <img src={logo} alt="Apple Logo" />
-          <h1>Unica's Cafe</h1>
         </a>
 
         {/* MOBILE VIEW: Show hamburger menu */}

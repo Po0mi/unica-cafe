@@ -23,7 +23,7 @@
   right: 0;
 
   // Start with transparent background
-  background: #e6e0db;
+  background: transparent;
 
   // Smooth transitions for all changes
   transition: all 0.3s ease;
@@ -47,7 +47,7 @@
   // Full width
   max-width: 100vw;
   height: 50px; // Taller navbar for better touch targets
-  margin: 1rem 4rem;
+  margin: 1rem 2rem;
 
   // 📱 TABLET: Reduce side padding
   @media (max-width: 1200px) {
@@ -58,6 +58,12 @@
   @media (max-width: 768px) {
     padding: 1.5rem 2rem;
   }
+  h1 {
+    color: #9d6b53;
+    font-size: clamp(0.8rem, 3vw, 1.5rem);
+    font-weight: 200;
+    font-style: italic;
+  }
 }
 
 // ===== LOGO STYLES =====
@@ -65,21 +71,58 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  gap: 0.5rem; // Space between logo image and text
 
   // Style the image inside logo
   img {
-    height: 110px; // Control logo size
+    height: 110px; // Default desktop size
     width: auto; // Maintain aspect ratio
     transition: all 0.3s ease;
+    object-fit: contain;
 
-    // Make logo white on transparent background
-    filter: brightness(0) invert(0);
-  }
-  h1 {
-    color: #968d7e;
-    font-size: clamp(0.8rem, 3vw, 1.5rem);
-    font-weight: 900;
-    font-family: "Ephesis";
+    // Make logo brand color
+    filter: brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(500%)
+      hue-rotate(340deg);
+
+    // When navbar is scrolled (white background)
+    .navbar.scrolled & {
+      filter: none; // Original colors on scroll
+    }
+
+    // 📱 LAPTOP (1200px and below)
+    @media (max-width: 1200px) {
+      height: 90px;
+    }
+
+    // 📱 TABLET (992px and below)
+    @media (max-width: 992px) {
+      height: 80px;
+    }
+
+    // 📱 MOBILE LANDSCAPE (768px and below, landscape)
+    @media (max-width: 768px) and (orientation: landscape) {
+      height: 60px;
+    }
+
+    // 📱 MOBILE PORTRAIT (768px and below, portrait)
+    @media (max-width: 768px) and (orientation: portrait) {
+      height: 70px;
+    }
+
+    // 📱 SMALL MOBILE (480px and below)
+    @media (max-width: 480px) {
+      height: 50px;
+    }
+
+    // 📱 EXTRA SMALL MOBILE (360px and below)
+    @media (max-width: 360px) {
+      height: 40px;
+    }
+
+    // 📱 TINY SCREENS (320px and below)
+    @media (max-width: 320px) {
+      height: 35px;
+    }
   }
 
   // When navbar is scrolled (white background)
@@ -101,13 +144,16 @@
 // ===== DESKTOP MENU =====
 .desktop-menu {
   display: flex;
-  gap: 2.5rem; // Space between links
-  align-items: center;
+  gap: 0.2rem;
+  margin-top: 4rem;
+  align-items: end;
+  display: flex;
+  flex-direction: column;
 
   // Navigation links
   .nav-link {
     text-decoration: none; // Remove underline
-    color: #968d7e; // White text on transparent bg
+    color: #9d6b53;
     font-weight: 600;
     font-size: 1rem;
     transition: color 0.3s ease;
@@ -119,22 +165,9 @@
 
     // Active section (current page)
     &.active {
-      color: black; // Keep white for active link on transparent bg
+      color: rgb(0, 0, 0); // Keep white for active link on transparent bg
       font-weight: 600;
       position: relative;
-
-      // Little dot indicator under active link
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50px;
-        height: 1px;
-        background: black;
-        border-radius: 50%;
-      }
     }
   }
 }
