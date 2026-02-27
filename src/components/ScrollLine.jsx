@@ -98,9 +98,7 @@ const ScrollLine = () => {
         <path
           ref={linePathRef}
           className="line-path"
-          d="M50 0 
-             C50 250, 70 400, 30 600 
-             C10 800, 50 900, 50 1000"
+          d="M80 0 C90 300, 60 600, 30 900 L20 1000"
           stroke="#9d6b53"
           strokeWidth="4"
           fill="none"

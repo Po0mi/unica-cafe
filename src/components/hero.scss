@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   background-color: #968d7e;
-  color: white;
   position: relative;
   overflow: visible;
 
@@ -91,7 +90,8 @@
     }
 
     @media (max-width: 480px) {
-      font-size: clamp(1.8rem, 8vw, 5rem);
+      font-size: clamp(1.8rem, 20vw, 19rem);
+      transform: translateY(-10rem);
     }
 
     span {
@@ -120,7 +120,7 @@
     margin-right: 4rem;
 
     // Use transform - it won't mess up your layout
-    transform: translate(-5rem, 20rem);
+    transform: translate(-5rem, 23rem);
 
     @media (max-width: 1400px) {
       transform: translateY(8rem);
@@ -140,8 +140,9 @@
     }
 
     @media (max-width: 480px) {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       line-height: 1.2;
+      transform: translateY(-11rem);
     }
 
     br {

@@ -75,7 +75,7 @@
 
   // Style the image inside logo
   img {
-    height: 110px; // Default desktop size
+    height: 140px; // Default desktop size
     width: auto; // Maintain aspect ratio
     transition: all 0.3s ease;
     object-fit: contain;
@@ -278,7 +278,7 @@
   }
 
   .navbar-logo img {
-    height: 32px; // Smaller logo on phones
+    height: 90px; // Smaller logo on phones
   }
 
   .mobile-menu {

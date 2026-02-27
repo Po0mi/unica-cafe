@@ -24,11 +24,7 @@ const Hero = () => {
         </div>
 
         <div className="hero-image-wrapper">
-          <img
-            src={coffeeImage}
-            alt="Cup of coffee on a cozy table"
-            className="hero-image"
-          />
+          <img src={coffeeImage} alt="coffee late" className="hero-image" />
         </div>
 
         {/* Created by credit - 2026 */}
