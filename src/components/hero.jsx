@@ -22,15 +22,17 @@ const Hero = () => {
             feels like home.
           </p>
         </div>
-
+        <a href="#menu" className="hero-cta-button">
+          Explore Menu →
+        </a>
         <div className="hero-image-wrapper">
           <img src={coffeeImage} alt="coffee late" className="hero-image" />
         </div>
 
         {/* Created by credit - 2026 */}
-        <div className="credit">
+        {/* <div className="credit">
           <p>2026 created by dan</p>
-        </div>
+        </div> */}
       </div>
     </section>
   );

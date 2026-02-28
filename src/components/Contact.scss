@@ -1,0 +1,358 @@
+.contact {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #968d7e;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+
+  // ── Texture overlay — matches hero-wrapper / about-wrapper ──
+  .contact-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .contact-texture {
+    position: absolute;
+    inset: 0;
+    background-image: url(../assets/cement-texture.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  // ── Main container ──
+  .contact-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 6rem 4rem 0;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    @media (max-width: 1024px) {
+      padding: 5rem 2rem 0;
+    }
+
+    @media (max-width: 768px) {
+      padding: 4rem 1.5rem 0;
+    }
+  }
+
+  // ── Header — matches .menu-header pattern ──
+  .contact-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(157, 107, 83, 0.3);
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  .contact-eyebrow {
+    font-size: 1rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #9d6b53;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  // Matches .hero-title / .about-title / .menu-title / .gallery-title
+  .contact-title {
+    font-size: clamp(2.5rem, 6vw, 6rem);
+    font-weight: 400;
+    font-style: italic;
+    color: #9d6b53;
+    line-height: 0.9;
+  }
+
+  .contact-note {
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #9d6b53;
+    opacity: 1;
+    padding-bottom: 0.3rem;
+  }
+
+  // ── Conversational form ──
+  .contact-form {
+    flex: 1;
+    padding-bottom: 4rem;
+  }
+
+  // ── The big sentence ──
+  .form-sentence {
+    font-size: clamp(1.8rem, 4vw, 4rem);
+    font-weight: 400;
+    color: #9d6b53;
+    line-height: 1.6;
+    max-width: 1100px;
+  }
+
+  .sentence-text {
+    opacity: 1;
+  }
+
+  // Block-level line wrapper for message + email lines
+  .sentence-block {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .sentence-field {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+
+  // ── Inline input ──
+  .inline-input {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #9d6b53;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 700;
+    font-style: italic;
+    color: #9d6b53;
+    caret-color: #9d6b53;
+    padding: 0 0.15em 0.05em;
+    min-width: 80px;
+    transition: border-color 0.3s ease;
+    vertical-align: baseline;
+
+    &::placeholder {
+      color: #9d6b53;
+      opacity: 0.2;
+      font-style: italic;
+    }
+
+    &:focus {
+      border-bottom-color: #9d6b53;
+    }
+  }
+
+  // ── Inline textarea ──
+  .inline-textarea {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #9d6b53;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 700;
+    font-style: italic;
+    color: #9d6b53;
+    caret-color: #9d6b53;
+    padding: 0.1em 0.15em 0.05em;
+    width: 100%;
+    resize: none;
+    min-height: 1.6em;
+    line-height: 1.6;
+    display: inline-block;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+    vertical-align: baseline;
+
+    &::placeholder {
+      color: #9d6b53;
+      opacity: 0.2;
+      font-style: italic;
+    }
+
+    &:focus {
+      border-bottom-color: #9d6b53;
+    }
+  }
+
+  // ── Bottom row ──
+  .form-bottom {
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(157, 107, 83, 0.3);
+    padding-top: 2.5rem;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .info-item {
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    color: #9d6b53;
+    opacity: 1;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s ease;
+
+    &::before {
+      content: "—";
+      opacity: 0.4;
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  // Submit button — same sweep pattern as accordion-trigger / navbar
+  .submit-btn {
+    background: none;
+    border: 1px solid rgba(157, 107, 83, 1);
+    color: #9d6b53;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.1rem 2.8rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+      color 0.4s cubic-bezier(0.65, 0.01, 0.05, 0.99),
+      border-color 0.4s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #9d6b53;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.65, 0.01, 0.05, 0.99);
+      z-index: -1;
+    }
+
+    &::after {
+      content: "→";
+      margin-left: 0.75rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      color: #968d7e;
+      border-color: #9d6b53;
+
+      &::before {
+        transform: scaleX(1);
+      }
+
+      &::after {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  // ── Footer ──
+  .contact-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(157, 107, 83, 0.3);
+    margin-top: auto;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .footer-brand {
+    font-size: clamp(1rem, 2.5vw, 2rem);
+    font-weight: 700;
+    font-style: italic;
+    color: #9d6b53;
+    opacity: 1;
+  }
+
+  .footer-copy {
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #9d6b53;
+    opacity: 1;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 1.5rem;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  .social-link {
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #9d6b53;
+    opacity: 1;
+    text-decoration: none;
+    position: relative;
+    transition: opacity 0.2s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #9d6b53;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s cubic-bezier(0.65, 0.01, 0.05, 0.99);
+    }
+
+    &:hover {
+      opacity: 0.9;
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+}

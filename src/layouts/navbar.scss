@@ -1,292 +1,235 @@
-/**
- * NAVBAR STYLES
- * 
- * WHAT THIS FILE DOES:
- * - Styles the navigation bar at the top of the page
- * - Makes it responsive for mobile and desktop
- * - Adds cool effects when scrolling
- * - Styles the hamburger menu for mobile
- * 
- * COLOR VARIABLES (iPhone 17 Orange theme):
- * - Orange: #d5753b (primary brand color)
- * - Dark text: #1d1d1f (Apple's dark gray)
- * - Light text: #ffffff (white)
- * - Backgrounds: white and transparent
- */
-
-// ===== MAIN NAVBAR CONTAINER =====
+// ── NAVBAR ──
 .navbar {
-  // Position: stays at top even when scrolling
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-
-  // Start with transparent background
   background: transparent;
-
-  // Smooth transitions for all changes
   transition: all 0.3s ease;
-
-  // Stay above all other content
   z-index: 1000;
-
-  // Change hamburger icon color when scrolled
-  .hamburger span {
-    background: #1d1d1f; // Dark hamburger on white bg
-  }
 }
 
-// ===== NAVBAR CONTAINER =====
+// ── CONTAINER ──
 .navbar-container {
-  // Flexbox for horizontal layout
   display: flex;
-  justify-content: space-between; // Logo left, menu right
-  align-items: center; // Center vertically
-
-  // Full width
+  justify-content: space-between;
+  align-items: center;
   max-width: 100vw;
-  height: 50px; // Taller navbar for better touch targets
+  height: 50px;
   margin: 1rem 2rem;
 
-  // 📱 TABLET: Reduce side padding
   @media (max-width: 1200px) {
     padding: 1.5rem 3rem;
   }
 
-  // 📱 MOBILE: Reduce side padding more
   @media (max-width: 768px) {
     padding: 1.5rem 2rem;
   }
-  h1 {
-    color: #9d6b53;
-    font-size: clamp(0.8rem, 3vw, 1.5rem);
-    font-weight: 200;
-    font-style: italic;
-  }
 }
 
-// ===== LOGO STYLES =====
+// ── LOGO ──
 .navbar-logo {
   display: flex;
   align-items: center;
   text-decoration: none;
-  gap: 0.5rem; // Space between logo image and text
+  gap: 0.5rem;
 
-  // Style the image inside logo
   img {
-    height: 140px; // Default desktop size
-    width: auto; // Maintain aspect ratio
+    height: 140px;
+    width: auto;
     transition: all 0.3s ease;
     object-fit: contain;
-
-    // Make logo brand color
     filter: brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(500%)
       hue-rotate(340deg);
 
-    // When navbar is scrolled (white background)
     .navbar.scrolled & {
-      filter: none; // Original colors on scroll
+      filter: brightness(0) saturate(100%) invert(40%) sepia(30%) saturate(500%)
+        hue-rotate(340deg);
     }
 
-    // 📱 LAPTOP (1200px and below)
     @media (max-width: 1200px) {
       height: 90px;
     }
-
-    // 📱 TABLET (992px and below)
     @media (max-width: 992px) {
       height: 80px;
     }
-
-    // 📱 MOBILE LANDSCAPE (768px and below, landscape)
     @media (max-width: 768px) and (orientation: landscape) {
       height: 60px;
     }
-
-    // 📱 MOBILE PORTRAIT (768px and below, portrait)
     @media (max-width: 768px) and (orientation: portrait) {
       height: 70px;
     }
-
-    // 📱 SMALL MOBILE (480px and below)
     @media (max-width: 480px) {
       height: 50px;
     }
-
-    // 📱 EXTRA SMALL MOBILE (360px and below)
     @media (max-width: 360px) {
       height: 40px;
     }
-
-    // 📱 TINY SCREENS (320px and below)
     @media (max-width: 320px) {
       height: 35px;
     }
   }
 
-  // When navbar is scrolled (white background)
   &:hover img {
-    transform: scale(1.05); // Slight grow on hover
-
-    @media (max-width: 399px) and (min-width: 300px) {
-      h1 {
-        font-size: 2rem;
-      }
-      img {
-        height: 120px;
-        width: auto;
-      }
-    }
+    transform: scale(1.05);
   }
 }
 
-// ===== DESKTOP MENU =====
+// ── DESKTOP MENU ──
 .desktop-menu {
   display: flex;
   gap: 0.2rem;
   margin-top: 4rem;
-  align-items: end;
-  display: flex;
+  align-items: flex-end;
   flex-direction: column;
 
-  // Navigation links
   .nav-link {
-    text-decoration: none; // Remove underline
+    text-decoration: none;
     color: #9d6b53;
     font-weight: 600;
     font-size: 1rem;
     transition: color 0.3s ease;
 
-    // Hover effect
     &:hover {
-      color: black; // iPhone 17 Orange
+      color: black;
     }
 
-    // Active section (current page)
     &.active {
-      color: rgb(0, 0, 0); // Keep white for active link on transparent bg
+      color: black;
       font-weight: 600;
-      position: relative;
     }
   }
 }
 
-// ===== MOBILE HAMBURGER MENU =====
+// ── HAMBURGER ──
 .hamburger {
-  display: none; // Hidden on desktop
+  display: none;
   flex-direction: column;
   gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 10px;
-  z-index: 1001; // Above mobile menu
+  z-index: 1001;
 
-  // The three lines
   span {
     width: 25px;
-    height: 3px;
-    background: white; // White lines on transparent bg
-    transition: 0.3s ease;
-    border-radius: 3px;
-  }
-
-  // When menu is open - transform into X
-  &.open {
-    span:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-    span:nth-child(2) {
-      opacity: 0; // Middle line disappears
-    }
-    span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
-  }
-}
-
-// ===== MOBILE MENU DROPDOWN =====
-.mobile-menu {
-  position: fixed;
-  top: 80px; // Below navbar
-  left: 0;
-  right: 0;
-  background: white;
-  padding: 2rem;
-
-  // Start hidden above screen
-  transform: translateY(-150%);
-  transition: transform 0.4s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  z-index: 999;
-
-  // When open - slide down
-  &.open {
-    transform: translateY(0);
-  }
-
-  // Mobile menu links
-  .nav-link {
+    height: 2px;
+    background: #9d6b53;
+    border-radius: 2px;
     display: block;
-    padding: 1.2rem;
-    text-decoration: none;
-    color: #1d1d1f;
-    text-align: center;
-    font-weight: 500;
-    font-size: 1.2rem;
-    border-bottom: 1px solid #f0f0f0;
-    transition: all 0.3s ease;
-
-    // Last link has no border
-    &:last-child {
-      border-bottom: none;
-    }
-
-    // Hover effect
-    &:hover {
-      color: #d5753b;
-      background: #fafafa;
-      padding-left: 1.5rem;
-    }
-
-    // Active link
-    &.active {
-      color: #d5753b;
-      background: #fff5eb; // Light orange background
-      font-weight: 600;
-    }
+    transform-origin: center;
   }
 }
 
-// ===== RESPONSIVE BREAKPOINTS =====
-// Show hamburger, hide desktop menu on mobile
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
-
   .desktop-menu {
     display: none;
   }
 }
 
-// Small phones
 @media (max-width: 480px) {
   .navbar-container {
     padding: 1rem;
   }
-
   .navbar-logo img {
-    height: 90px; // Smaller logo on phones
+    height: 90px;
+  }
+}
+
+// ── MOBILE DROPDOWN ──
+.mobile-dropdown {
+  display: none; // GSAP toggles to flex
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #968d7e;
+  border-top: 1px solid rgba(157, 107, 83, 0.25);
+  border-bottom: 1px solid rgba(157, 107, 83, 0.25);
+  padding: 0.5rem 0;
+  z-index: 998;
+
+  // Subtle grain texture to match site
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(../assets/cement-texture.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 2rem;
+  text-decoration: none;
+  color: #9d6b53;
+  border-bottom: 1px solid rgba(157, 107, 83, 0.1);
+  position: relative;
+  transition: padding-left 0.3s cubic-bezier(0.65, 0.01, 0.05, 0.99);
+
+  // Hover sweep — matches accordion-trigger pattern
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(157, 107, 83, 0.08);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.65, 0.01, 0.05, 0.99);
   }
 
-  .mobile-menu {
-    top: 70px; // Adjust for smaller navbar
+  &:last-child {
+    border-bottom: none;
+  }
 
-    .nav-link {
-      padding: 1rem;
-      font-size: 1.1rem;
+  &:hover,
+  &.active {
+    padding-left: 2.5rem;
+
+    &::before {
+      transform: scaleX(1);
+    }
+
+    .dropdown-label {
+      font-style: italic;
     }
   }
+
+  &.active .dropdown-index {
+    opacity: 0.7;
+  }
+}
+
+.dropdown-index {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: #9d6b53;
+  opacity: 0.35;
+  min-width: 1.5rem;
+  transition: opacity 0.2s ease;
+}
+
+.dropdown-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #9d6b53;
+  letter-spacing: 0.05em;
+  transition: font-style 0.2s ease;
+}
+
+// Remove old mobile menu
+.mobile-menu {
+  display: none;
 }

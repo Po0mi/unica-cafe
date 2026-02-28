@@ -1,6 +1,5 @@
 import React from "react";
 import "./about.scss";
-// import espresso from "../assets/coffee-espresso.png"; // not used currently
 
 const About = () => {
   return (
@@ -19,15 +18,14 @@ const About = () => {
               aims to be a place where locals can relax, connect, and enjoy
               simple moments over great coffee and food.
             </p>
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=Unica's+Cafe+Cabatuan+Iloilo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="about-button"
-            >
-              Find us on Google Maps
-            </a>
+
+            {/* ✨ New: Customer Quote */}
+            <blockquote className="about-quote">
+              “The best coffee in town – feels like home every time.”
+              <cite>– Maria L., regular customer</cite>
+            </blockquote>
           </div>
+          <p className="about-eyebrow">Who are we</p>
           <div className="about-title">
             <h1>About</h1>
           </div>

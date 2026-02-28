@@ -3,6 +3,10 @@ import Navbar from "./layouts/navbar";
 import Hero from "./components/hero";
 import About from "./components/about";
 import ScrollLine from "./components/ScrollLine"; // Import the scroll line component
+import CreditCircle from "./components/CreditCircle";
+import Menu from "./components/Menu";
+import Gallery from "./components/Gallery";
+import Contact from "./components/Contact";
 // Import more sections as we create them:
 // import Features from "./components/sections/features/Features";
 // import HowItWorks from "./components/sections/howitworks/HowItWorks";
@@ -20,6 +24,10 @@ function App() {
       <main>
         <Hero />
         <About />
+        <CreditCircle />
+        <Menu />
+        <Gallery />
+        <Contact />
         {/* More sections will go here */}
       </main>
     </div>

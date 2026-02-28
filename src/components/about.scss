@@ -5,7 +5,7 @@
   align-items: center;
   background-color: #968d7e;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   z-index: 0;
 
   .about-container {
@@ -54,17 +54,18 @@
       padding: 0 1rem;
     }
   }
+
   .about-title {
     font-size: clamp(2.5rem, 20vw, 8rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
     font-weight: bold;
     line-height: 0.8;
-    -webkit-text-stroke: 5px #9d6b53;
+    -webkit-text-stroke: 7px #9d6b53;
     color: transparent;
     transform: translate(0rem, 19rem);
-    z-index: 3;
-
+    margin-right: 1rem;
+    z-index: 100;
     @media (max-width: 1200px) {
       margin-left: 0;
       text-align: center;
@@ -81,17 +82,27 @@
       font-size: clamp(1.8rem, 8vw, 5rem);
     }
   }
+  .about-eyebrow {
+    font-size: 1rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #9d6b53;
+    font-weight: 500;
+    position: absolute;
+    right: 0;
+    left: 45%;
+    bottom: 35%;
+  }
   .about-description {
-    font-size: clamp(1.2rem, 4vw, 1.7rem); // sensible range
+    font-size: clamp(1.2rem, 4vw, 1.7rem);
     opacity: 1;
     width: 100%;
-    max-width: 1200px; // optional: limits width for readability
-    line-height: 1.2;
+    max-width: 1200px;
+    line-height: 1;
     font-weight: 100;
     color: #9d6b53;
-    text-align: justify;
-    // transform: translateX(-10rem); // REMOVED – no longer needed
-    transform: translateX(5rem);
+    text-align: left;
+    transform: translateX(10%);
 
     @media (max-width: 1400px) {
       // adjust for tablet if needed
@@ -119,42 +130,31 @@
       }
     }
   }
-  .about-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: #9d6b53;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 600;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    white-space: nowrap;
-    z-index: 10;
 
-    &:hover {
-      background-color: #c0652a;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
+  /* ===== NEW: Quote Styles ===== */
+  .about-quote {
+    margin: 2rem 0 1.5rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid #9d6b53;
+    font-style: italic;
+    color: #9d6b53;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    font-weight: 900;
 
-    // Positioning - adjust as needed
-    position: absolute;
-    bottom: -25%;
-    right: 64%;
-
-    @media (max-width: 1200px) {
-      position: static; // let it flow naturally on smaller screens
-      margin-top: 2rem;
-      align-self: center;
+    cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #9d6b53;
+      font-style: normal;
+      font-weight: 400;
     }
 
     @media (max-width: 768px) {
-      font-size: 0.9rem;
-      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      padding-left: 1rem;
+      margin: 1.5rem 0;
     }
   }
 }
