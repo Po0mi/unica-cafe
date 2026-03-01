@@ -131,10 +131,7 @@
     }
 
     @media (min-width: 300px) and (max-width: 767px) {
-      font-size: clamp(0.5rem, 3vw, 0.8rem);
-      position: absolute;
-      top: 50%;
-      transform: translateX(-30%);
+      display: none;
     }
 
     br {
