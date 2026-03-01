@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="app">
       <Navbar />
-      <ScrollLine /> {/* The self-drawing line - independent component */}
+      <ScrollLine />
       <main>
         <Hero />
         <About />
@@ -22,7 +22,6 @@ function App() {
         <Menu />
         <Gallery />
         <Contact />
-        {/* More sections will go here */}
       </main>
     </div>
   );

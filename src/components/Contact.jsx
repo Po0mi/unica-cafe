@@ -126,7 +126,7 @@ const Contact = () => {
                 Open daily · 11am – 9pm
               </a>
               <a className="info-item" href="#">
-                @unicascafe
+                @unicascafecab
               </a>
             </div>
             <button className="submit-btn" type="submit">
