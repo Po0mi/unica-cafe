@@ -77,8 +77,8 @@
     color: #9d6b53;
     z-index: 3;
 
-    @media (min-width: 1921px) and (max-width: 2560px) {
-      font-size: clamp(2.5rem, 30vw, 26rem);
+    @media (min-width: 1920px) {
+      font-size: clamp(2.5rem, 30vw, 24rem);
     }
 
     @media (min-width: 300px) and (max-width: 767px) {
@@ -120,11 +120,11 @@
     &.visible {
       opacity: 1 !important;
     }
-    @media (min-width: 1921px) and (max-width: 2560px) {
+    @media (min-width: 1920px) {
       position: absolute;
       bottom: 0;
-      font-size: 6.5rem;
-      right: 2rem;
+      font-size: 6rem;
+      right: 2.5rem;
     }
 
     @media (min-width: 768px) and (max-width: 1920px) {

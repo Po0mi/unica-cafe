@@ -28,7 +28,7 @@
   // ── Container ──
   .gallery-container {
     width: 100%;
-    max-width: 2260px;
+    max-width: 1430px;
     margin: 0 auto;
     padding: 6rem 4rem 10rem;
     position: relative;
@@ -36,9 +36,6 @@
 
     @media (min-width: 1921px) and (max-width: 2560px) {
       max-width: 1620px;
-    }
-    @media (min-width: 768px) and (max-width: 1920px) {
-      max-width: 1230px;
     }
     @media (max-width: 1024px) {
       padding: 5rem 2rem 8rem;
