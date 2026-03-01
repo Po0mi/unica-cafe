@@ -1,24 +1,19 @@
 // hooks/useLocomotiveScroll.js
-import { useEffect, useRef } from "react";
-import LocomotiveScroll from "locomotive-scroll";
-import "locomotive-scroll/dist/locomotive-scroll.css";
+// ── DISABLED — Locomotive Scroll conflicts with GSAP ScrollTrigger ──
+// Locomotive intercepts scroll events so ScrollTrigger's window scroll
+// position never changes, causing all scroll-based triggers to fail.
+//
+// If you want smooth scrolling, use GSAP's native smooth scroll instead:
+// ScrollTrigger.normalizeScroll(true) in main.jsx
+//
+// This hook now returns a ref that does nothing, so existing
+// components that call useLocomotiveScroll() won't break.
+
+import { useRef } from "react";
 
 const useLocomotiveScroll = () => {
   const scrollRef = useRef(null);
-
-  useEffect(() => {
-    // Create scroll instance
-    const scroller = new LocomotiveScroll({
-      el: scrollRef.current,
-      smooth: true,
-    });
-
-    // Cleanup on unmount
-    return () => {
-      scroller.destroy();
-    };
-  }, []); // Empty array = run once
-
+  // No locomotive instance — native scroll used instead
   return scrollRef;
 };
 

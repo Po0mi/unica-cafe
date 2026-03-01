@@ -1,30 +1,10 @@
 // hooks/useGalleryAnimation.js
 import { useEffect } from "react";
 import { gsap } from "gsap";
-import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(CustomEase, ScrollTrigger);
-CustomEase.create("main", "0.65, 0.01, 0.05, 0.99");
 
 const useGalleryAnimation = () => {
   useEffect(() => {
-    // ── Selectors matching Gallery.jsx exactly ──
-    // .gallery              → section wrapper
-    // .gallery-eyebrow      → "A peek inside"
-    // .gallery-title        → "Gallery" h2
-    // .gallery-count        → "5 photos"
-    // .spread--1            → spread 1 wrapper
-    // .spread--1 .spread-photo--portrait   → left tall photo
-    // .spread--1 .spread-photo--landscape  → right landscape photo
-    // .spread--1 .spread-caption           → caption block
-    // .spread--2 .pull-quote-block         → pull quote
-    // .spread--2 .spread-photo--square     → right square photo
-    // .spread--3 .spread-photo--landscape  → left landscape
-    // .spread--3 .spread-caption           → caption
-    // .spread--3 .spread-photo--portrait   → right tall portrait
-    // .spread-gap           → all gap columns
-
     const section = document.querySelector(".gallery");
     const eyebrow = document.querySelector(".gallery-eyebrow");
     const title = document.querySelector(".gallery-title");
@@ -32,12 +12,10 @@ const useGalleryAnimation = () => {
 
     if (!section) return;
 
-    // ── Initial states ──
     gsap.set(eyebrow, { opacity: 0, y: 16 });
     gsap.set(title, { opacity: 0, clipPath: "inset(0 0 100% 0)", y: 30 });
     gsap.set(count, { opacity: 0, x: 16 });
 
-    // ── 1. Header entry ──
     const headerTl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -62,8 +40,7 @@ const useGalleryAnimation = () => {
       )
       .to(count, { opacity: 1, x: 0, duration: 0.5, ease: "main" }, "<+=0.1");
 
-    // ── 2. Spread 1 ──
-    // Portrait slides in from left, landscape + caption from right
+    // ── Spread 1 ──
     const spread1Left = document.querySelector(
       ".spread--1 .spread-photo--portrait",
     );
@@ -84,7 +61,6 @@ const useGalleryAnimation = () => {
         id: "gallery-spread-1",
       },
     });
-
     spread1Tl
       .to(spread1Left, { opacity: 1, x: 0, duration: 1.0, ease: "main" })
       .to(
@@ -98,8 +74,7 @@ const useGalleryAnimation = () => {
         "<+=0.2",
       );
 
-    // ── 3. Spread 2 ──
-    // Pull quote fades in from left, photo from right
+    // ── Spread 2 ──
     const spread2Quote = document.querySelector(".spread--2 .pull-quote-block");
     const spread2Photo = document.querySelector(
       ".spread--2 .spread-photo--square",
@@ -116,7 +91,6 @@ const useGalleryAnimation = () => {
         id: "gallery-spread-2",
       },
     });
-
     spread2Tl
       .to(spread2Quote, { opacity: 1, x: 0, duration: 0.9, ease: "main" })
       .to(
@@ -125,8 +99,7 @@ const useGalleryAnimation = () => {
         "<+=0.15",
       );
 
-    // ── 4. Spread 3 ──
-    // Landscape + caption from left, portrait from right
+    // ── Spread 3 ──
     const spread3Left = document.querySelector(
       ".spread--3 .spread-photo--landscape",
     );
@@ -147,7 +120,6 @@ const useGalleryAnimation = () => {
         id: "gallery-spread-3",
       },
     });
-
     spread3Tl
       .to(spread3Left, { opacity: 1, x: 0, duration: 1.0, ease: "main" })
       .to(
@@ -161,7 +133,7 @@ const useGalleryAnimation = () => {
         "<+=0.15",
       );
 
-    // ── 5. Gap columns fade in with each spread ──
+    // ── Gap columns ──
     document.querySelectorAll(".spread-gap").forEach((gap, i) => {
       gsap.set(gap, { opacity: 0 });
       gsap.to(gap, {
@@ -177,7 +149,7 @@ const useGalleryAnimation = () => {
       });
     });
 
-    // ── 6. Subtle parallax on each photo as section scrolls ──
+    // ── Photo parallax ──
     document.querySelectorAll(".spread-photo img").forEach((img, i) => {
       gsap.to(img, {
         y: -30,
@@ -192,11 +164,9 @@ const useGalleryAnimation = () => {
       });
     });
 
-    // ── Cleanup ──
     return () => {
       [headerTl, spread1Tl, spread2Tl, spread3Tl].forEach((tl) => tl.kill());
-
-      const ids = [
+      [
         "gallery-header",
         "gallery-spread-1",
         "gallery-spread-2",
@@ -209,8 +179,7 @@ const useGalleryAnimation = () => {
         "gallery-parallax-2",
         "gallery-parallax-3",
         "gallery-parallax-4",
-      ];
-      ids.forEach((id) => ScrollTrigger.getById(id)?.kill());
+      ].forEach((id) => ScrollTrigger.getById(id)?.kill());
 
       gsap.set(
         [
