@@ -49,22 +49,9 @@ const useAboutAnimation = () => {
       .to(quote, { opacity: 1, x: 0, duration: 0.7, ease: "main" }, "<+=0.15")
       .to(cite, { opacity: 1, duration: 0.5, ease: "power2.out" }, "<+=0.2");
 
-    gsap.to(title, {
-      y: -60,
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.2,
-        id: "about-parallax",
-      },
-    });
-
     return () => {
       tl.kill();
       ScrollTrigger.getById("about-entry")?.kill();
-      ScrollTrigger.getById("about-parallax")?.kill();
       gsap.set([eyebrow, title, paragraph, quote, cite], { clearProps: "all" });
     };
   }, []);

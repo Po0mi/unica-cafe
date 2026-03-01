@@ -40,7 +40,6 @@ const useGalleryAnimation = () => {
       )
       .to(count, { opacity: 1, x: 0, duration: 0.5, ease: "main" }, "<+=0.1");
 
-    // ── Spread 1 ──
     const spread1Left = document.querySelector(
       ".spread--1 .spread-photo--portrait",
     );
@@ -74,7 +73,6 @@ const useGalleryAnimation = () => {
         "<+=0.2",
       );
 
-    // ── Spread 2 ──
     const spread2Quote = document.querySelector(".spread--2 .pull-quote-block");
     const spread2Photo = document.querySelector(
       ".spread--2 .spread-photo--square",
@@ -99,7 +97,6 @@ const useGalleryAnimation = () => {
         "<+=0.15",
       );
 
-    // ── Spread 3 ──
     const spread3Left = document.querySelector(
       ".spread--3 .spread-photo--landscape",
     );
@@ -133,7 +130,6 @@ const useGalleryAnimation = () => {
         "<+=0.15",
       );
 
-    // ── Gap columns ──
     document.querySelectorAll(".spread-gap").forEach((gap, i) => {
       gsap.set(gap, { opacity: 0 });
       gsap.to(gap, {
@@ -149,7 +145,6 @@ const useGalleryAnimation = () => {
       });
     });
 
-    // ── Photo parallax ──
     document.querySelectorAll(".spread-photo img").forEach((img, i) => {
       gsap.to(img, {
         y: -30,
@@ -180,7 +175,6 @@ const useGalleryAnimation = () => {
         "gallery-parallax-3",
         "gallery-parallax-4",
       ].forEach((id) => ScrollTrigger.getById(id)?.kill());
-
       gsap.set(
         [
           eyebrow,

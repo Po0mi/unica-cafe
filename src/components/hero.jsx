@@ -2,12 +2,10 @@
 import React, { useState, useEffect } from "react";
 import "./hero.scss";
 import coffeeImage from "../assets/coffeeDrink.png";
-import useLocomotiveScroll from "../hooks/useLocomotiveScroll";
 import useHeroAnimation from "../hooks/useHeroAnimation";
 
 const Hero = () => {
-  const scrollRef = useLocomotiveScroll();
-  useHeroAnimation();
+  const scrollRef = useHeroAnimation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
