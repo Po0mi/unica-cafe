@@ -1,6 +1,7 @@
 // Hero.jsx
 import React, { useState, useEffect } from "react";
 import "./hero.scss";
+import { gsap } from "gsap";
 import coffeeImage from "../assets/coffeeDrink.png";
 import useHeroAnimation from "../hooks/useHeroAnimation";
 
@@ -16,7 +17,16 @@ const Hero = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
+  const handleScrollToMenu = (e) => {
+    e.preventDefault();
+    const target = document.querySelector("#menu");
+    if (!target) return;
+    gsap.to(window, {
+      scrollTo: { y: target, offsetY: 80 },
+      duration: 1.2,
+      ease: "power3.inOut",
+    });
+  };
   return (
     <section className="hero" id="home" ref={scrollRef} data-scroll-container>
       <div className="hero-container">
@@ -37,7 +47,11 @@ const Hero = () => {
             feels like home.
           </p>
         </div>
-        <a href="#menu" className="hero-cta-button">
+        <a
+          href="#menu"
+          className="hero-cta-button"
+          onClick={handleScrollToMenu}
+        >
           Explore Menu →
         </a>
         <div className="hero-image-wrapper">
