@@ -1,17 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { CustomEase } from "gsap/CustomEase";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useToggle } from "../hooks/useToggle";
 import { useClickOutside } from "../hooks/useClickOutside";
 import { useScrollPosition } from "../hooks/useScrollPosition";
 import { useActiveSection } from "../hooks/useActiveSection";
+import useNavbarAnimation from "../hooks/useNavbarAnimation";
 import logo from "../assets/logo.png";
 import "./navbar.scss";
 
-gsap.registerPlugin(CustomEase);
+gsap.registerPlugin(CustomEase, ScrollToPlugin);
 CustomEase.create("main", "0.65, 0.01, 0.05, 0.99");
 
 const Navbar = () => {
+  useNavbarAnimation();
   const [isMobile, setIsMobile] = useState(false);
   const scrollPosition = useScrollPosition();
   const {
@@ -112,10 +115,25 @@ const Navbar = () => {
     { href: "#contact", label: "Contact", id: "contact" },
   ];
 
+  // ── GSAP smooth scroll ──
+  // ScrollToPlugin handles the eased scroll,
+  // offset accounts for the fixed navbar height
   const handleSmoothScroll = (e, href) => {
     e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    const navbarHeight = document.querySelector(".navbar")?.offsetHeight ?? 0;
+    const targetY =
+      target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+    gsap.to(window, {
+      scrollTo: { y: targetY, autoKill: false },
+      duration: 1.2,
+      ease: "main",
+    });
+
     closeMenu();
   };
 

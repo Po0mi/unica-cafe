@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import useMenuAnimation from "../hooks/useMenuAnimation";
 import "./Menu.scss";
 
 const menuData = [
@@ -274,7 +275,7 @@ const AccordionItem = ({ section, isOpen, onToggle }) => {
 // ── Main Menu component ──
 const Menu = () => {
   const [openId, setOpenId] = useState(null);
-
+  useMenuAnimation();
   const handleToggle = (id) => {
     setOpenId((prev) => (prev === id ? null : id));
   };

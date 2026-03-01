@@ -1,5 +1,5 @@
 .gallery {
-  width: 100%;
+  width: 100vw;
   background-color: #968d7e;
   position: relative;
   overflow: hidden;
@@ -28,12 +28,18 @@
   // ── Container ──
   .gallery-container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 2260px;
     margin: 0 auto;
     padding: 6rem 4rem 10rem;
     position: relative;
     z-index: 2;
 
+    @media (min-width: 1921px) and (max-width: 2560px) {
+      max-width: 1620px;
+    }
+    @media (min-width: 768px) and (max-width: 1920px) {
+      max-width: 1230px;
+    }
     @media (max-width: 1024px) {
       padding: 5rem 2rem 8rem;
     }
@@ -53,7 +59,7 @@
 
     @media (max-width: 480px) {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 0.5rem;
       margin-bottom: 3rem;
       padding-bottom: 1.5rem;
@@ -67,14 +73,41 @@
     color: #9d6b53;
     font-weight: 500;
     margin-bottom: 0.5rem;
+    position: absolute;
+    writing-mode: vertical-rl;
+    left: 0;
+    top: 6%;
+
+    @media (min-width: 300px) and (max-width: 767px) {
+      position: static;
+      writing-mode: horizontal-tb;
+      transform: none;
+      left: auto;
+      display: block;
+      text-align: center;
+    }
   }
 
   .gallery-title {
-    font-size: clamp(2rem, 5vw, 5rem);
+    font-size: clamp(2rem, 20vw, 20rem);
     font-weight: 900;
     -webkit-text-stroke: 4px #9d6b53;
     color: transparent;
     line-height: 0.9;
+    position: absolute;
+    writing-mode: vertical-rl;
+    left: 0;
+    transform: translateX(-90%);
+
+    @media (min-width: 300px) and (max-width: 767px) {
+      -webkit-text-stroke: 2px #9d6b53;
+      position: static;
+      writing-mode: horizontal-tb;
+      transform: none;
+      left: auto;
+      display: block;
+      text-align: center;
+    }
   }
 
   .gallery-count {
@@ -82,7 +115,7 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: #9d6b53;
-    opacity: 0.45;
+    opacity: 1;
     padding-bottom: 0.3rem;
   }
 
@@ -121,6 +154,7 @@
   .spread--1 {
     grid-template-columns: 1fr 3rem 1.15fr;
     grid-template-rows: auto auto;
+    gap: 2rem;
 
     // portrait spans both rows
     > .spread-photo--portrait {
@@ -292,7 +326,7 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #9d6b53;
-    opacity: 0.35;
+    opacity: 1;
     margin-top: 1.5rem;
   }
 
@@ -321,12 +355,12 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #9d6b53;
-    opacity: 0.5;
+    opacity: 1;
   }
 
   .caption-title {
     font-size: clamp(1.1rem, 2.2vw, 2rem);
-    font-weight: 400;
+    font-weight: 900;
     font-style: italic;
     color: #9d6b53;
     line-height: 1.15;
@@ -334,12 +368,12 @@
   }
 
   .caption-desc {
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: #9d6b53;
-    opacity: 0.45;
+    opacity: 1;
     margin-top: 0.5rem;
     line-height: 1.6;
-    max-width: 260px;
+    max-width: 1000px;
   }
 
   // ── Pull quote (spread 2) ──
@@ -362,7 +396,7 @@
     font-style: italic;
     color: #9d6b53;
     line-height: 1.25;
-    opacity: 0.85;
+    opacity: 1;
   }
 
   .pull-attr {
@@ -370,6 +404,6 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: #9d6b53;
-    opacity: 0.4;
+    opacity: 1;
   }
 }

@@ -69,29 +69,23 @@
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 20vw, 20rem);
+    font-size: clamp(2.5rem, 30vw, 30rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
-    margin-left: 2rem;
     font-weight: bold;
     line-height: 0.8;
     color: #9d6b53;
     z-index: 3;
 
-    @media (max-width: 1200px) {
-      margin-left: 0;
+    @media (min-width: 1921px) and (max-width: 2560px) {
+      font-size: clamp(2.5rem, 30vw, 26rem);
+    }
+
+    @media (min-width: 300px) and (max-width: 767px) {
+      font-size: clamp(1.8rem, 20vw, 10rem);
       text-align: center;
-      font-size: clamp(2.5rem, 12vw, 12rem);
-    }
-
-    @media (max-width: 768px) {
-      font-size: clamp(2rem, 10vw, 8rem);
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 480px) {
-      font-size: clamp(1.8rem, 20vw, 19rem);
-      transform: translateY(-10rem);
+      position: absolute;
+      top: 30%;
     }
 
     span {
@@ -109,40 +103,37 @@
   }
 
   .hero-description {
-    font-size: clamp(2rem, 5vw, 5rem);
+    font-size: clamp(2rem, 15vw, 8.5rem);
     max-width: 1200px;
     text-align: left;
-    opacity: 0.9;
+    opacity: 1;
+    position: absolute;
+    right: 5rem;
+    bottom: 0;
     line-height: 0.8;
     font-weight: 100;
     font-style: italic;
     color: #9d6b53;
-    margin-right: 4rem;
+    transition: opacity 0.8s ease-in;
+    opacity: 0 !important;
 
-    // Use transform - it won't mess up your layout
-    transform: translate(-6rem, 24rem);
-
-    @media (max-width: 1400px) {
-      transform: translateY(8rem);
-      margin-right: 2rem;
+    &.visible {
+      opacity: 1 !important;
+    }
+    @media (min-width: 1921px) and (max-width: 2560px) {
+      position: absolute;
+      bottom: 0;
+      font-size: 6.5rem;
+      right: 2rem;
     }
 
-    @media (max-width: 1200px) {
-      transform: translateY(0);
-      text-align: center;
-      margin-right: 0;
-      font-size: clamp(1.8rem, 4vw, 3.5rem);
+    @media (min-width: 768px) and (max-width: 1920px) {
     }
 
-    @media (max-width: 768px) {
-      font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-      line-height: 1;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 1.1rem;
-      line-height: 1.2;
-      transform: translateY(-11rem);
+    @media (min-width: 300px) and (max-width: 767px) {
+      font-size: clamp(0.5rem, 3vw, 0.8rem);
+      position: absolute;
+      top: 50%;
     }
 
     br {
@@ -154,14 +145,13 @@
 }
 .hero-cta-button {
   position: absolute;
-  // Position above the tagline – adjust these values as needed
-  bottom: 13%; // higher than tagline's bottom position
-  right: 6%; // aligns with tagline's right side
+  bottom: 10rem;
+  right: 4rem;
   display: inline-block;
   padding: 0.9rem 2.2rem;
   color: #9d6b53;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 3rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
@@ -175,35 +165,26 @@
     color: #9d6b53;
   }
 
-  // Desktop adjustments
-  @media (max-width: 1400px) {
-    bottom: 25%;
+  @media (min-width: 1921px) and (max-width: 2560px) {
+    bottom: 12%;
+    font-size: 2rem;
+    right: 1rem;
   }
 
-  @media (max-width: 1200px) {
-    // On tablet, the layout changes – we can reposition
-    position: static;
-    margin-top: 2rem;
-    display: inline-block;
-    width: auto;
-    align-self: center;
+  @media (min-width: 768px) and (max-width: 1920px) {
+    bottom: 12%;
+    font-size: 2rem;
+    right: 1rem;
   }
 
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-    padding: 0.8rem 1.8rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.8rem;
-    padding: 0.7rem 1.5rem;
-    margin-top: 1.5rem;
+  @media (min-width: 300px) and (max-width: 767px) {
+    display: none;
   }
 }
 // Image wrapper - absolute positioned at bottom
 .hero-image-wrapper {
   position: absolute;
-  bottom: 0;
+  bottom: -35%;
   left: 0;
   transform: translateY(35%);
   width: 100%;
@@ -221,8 +202,9 @@
     transform: translateY(20%);
   }
 
-  @media (max-width: 480px) {
-    transform: translateY(15%);
+  @media (min-width: 300px) and (max-width: 767px) {
+    position: absolute;
+    bottom: 0%;
   }
 }
 

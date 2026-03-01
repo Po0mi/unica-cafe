@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import useContactAnimation from "../hooks/useContactAnimation";
 import "./Contact.scss";
 
 const Contact = () => {
@@ -8,7 +9,7 @@ const Contact = () => {
     message: "",
     email: "",
   });
-
+  useContactAnimation();
   const messageRef = useRef(null);
 
   const handleChange = (e) => {
@@ -122,7 +123,7 @@ const Contact = () => {
                 Cabatuan, Iloilo, Philippines
               </a>
               <a className="info-item" href="#">
-                Open daily · 7am – 9pm
+                Open daily · 11am – 9pm
               </a>
               <a className="info-item" href="#">
                 @unicascafe
@@ -139,14 +140,17 @@ const Contact = () => {
           <span className="footer-brand">Unica's Cafe</span>
           <span className="footer-copy">© 2026 · Created by Dan</span>
           <div className="footer-socials">
-            <a className="social-link" href="#">
+            <a
+              className="social-link"
+              href="https://www.facebook.com/profile.php?id=61586858335568"
+            >
               Facebook
             </a>
-            <a className="social-link" href="#">
+            <a
+              className="social-link"
+              href="https://www.instagram.com/unicascafecab?fbclid=IwY2xjawQRN8tleHRuA2FlbQIxMABicmlkETFWbmJNZTVEc3RScG4wYm41c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHnZQgBwzeD1nHrLhdUiPyU-1IgA9E2NvjkIj_Ext8Rqib-1jwr_PVgQ4vpbu_aem_dhpRZbap0y0jhkgPyRYgFw"
+            >
               Instagram
-            </a>
-            <a className="social-link" href="#">
-              TikTok
             </a>
           </div>
         </div>

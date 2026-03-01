@@ -15,7 +15,6 @@
     justify-content: center;
     z-index: 2;
     position: relative;
-    height: 100vh;
 
     @media (max-width: 1024px) {
       padding: 0 2rem;
@@ -45,43 +44,59 @@
     z-index: 5;
 
     @media (max-width: 1200px) {
-      flex-direction: column;
-      justify-content: center;
       gap: 2rem;
     }
 
-    @media (max-width: 768px) {
-      padding: 0 1rem;
+    @media (max-width: 767px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
+  // ── Title — bottom right on desktop, top left on mobile ──
   .about-title {
-    font-size: clamp(2.5rem, 20vw, 8rem);
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
-    line-height: 0.8;
-    -webkit-text-stroke: 7px #9d6b53;
-    color: transparent;
-    transform: translate(0rem, 19rem);
-    margin-right: 1rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     z-index: 100;
-    @media (max-width: 1200px) {
-      margin-left: 0;
-      text-align: center;
-      font-size: clamp(2.5rem, 12vw, 12rem);
+    margin: 0;
+
+    h1 {
+      font-size: clamp(5rem, 20vw, 20rem);
+      font-weight: 700;
+      line-height: 0.85;
+      -webkit-text-stroke: 7px #9d6b53;
+      color: transparent;
+      white-space: nowrap;
+      display: block;
+
+      @media (max-width: 1200px) {
+        -webkit-text-stroke: 5px #9d6b53;
+      }
+
+      @media (min-width: 1921px) {
+        font-size: clamp(16rem, 30vw, 30rem);
+        -webkit-text-stroke: 8px #9d6b53;
+      }
+
+      @media (max-width: 767px) {
+        font-size: clamp(4rem, 22vw, 8rem);
+        -webkit-text-stroke: 3px #9d6b53;
+        white-space: nowrap;
+      }
     }
 
-    @media (max-width: 768px) {
-      font-size: clamp(2rem, 10vw, 8rem);
-      margin-bottom: 1rem;
-      transform: translate(0rem, -25rem);
-    }
-
-    @media (max-width: 480px) {
-      font-size: clamp(1.8rem, 8vw, 5rem);
+    // Mobile: anchor to top left instead
+    @media (max-width: 767px) {
+      bottom: auto;
+      right: auto;
+      top: 2rem;
+      left: 2.5rem;
     }
   }
+
+  // ── Eyebrow — tracks just above the title on both desktop & mobile ──
   .about-eyebrow {
     font-size: 1rem;
     letter-spacing: 0.22em;
@@ -89,39 +104,75 @@
     color: #9d6b53;
     font-weight: 500;
     position: absolute;
-    right: 0;
-    left: 45%;
-    bottom: 35%;
+
+    // Desktop: above the bottom-right title
+    bottom: calc(20vw * 0.85 + 2rem);
+    right: 4rem;
+
+    @media (min-width: 1920px) {
+      bottom: calc(20vw * 0.78 + 2rem);
+      right: 67rem;
+    }
+
+    @media (max-width: 1440px) {
+      bottom: calc(20vw * 0.85 + 1.5rem);
+      right: 3rem;
+    }
+
+    @media (max-width: 1024px) {
+      bottom: calc(20vw * 0.85 + 1rem);
+      right: 2rem;
+    }
+
+    // Mobile: sits just above the title which is at top: 2rem
+    // title height = clamp(4rem, 22vw, 8rem) × 0.85 line-height
+    // eyebrow goes just above that
+    @media (max-width: 767px) {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      bottom: auto;
+      right: auto;
+      left: 3.5rem;
+      // top of title is 2rem, eyebrow sits ~1.4rem above the title text
+      top: calc(2rem - 1.4rem);
+    }
   }
+
+  // ── Description ──
   .about-description {
     font-size: clamp(1.2rem, 4vw, 1.7rem);
-    opacity: 1;
     width: 100%;
-    max-width: 1200px;
-    line-height: 1;
+    max-width: 50%;
+    line-height: 1.2;
     font-weight: 100;
     color: #9d6b53;
     text-align: left;
-    transform: translateX(10%);
+    padding-left: 4rem;
+    position: relative;
+    z-index: 10;
 
-    @media (max-width: 1400px) {
-      // adjust for tablet if needed
+    @media (min-width: 1921px) {
+      max-width: 40%;
+      padding-left: 5rem;
+      font-size: clamp(1.4rem, 1.8vw, 2rem);
     }
 
     @media (max-width: 1200px) {
+      max-width: 55%;
+      padding-left: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      max-width: 60%;
+    }
+
+    @media (max-width: 767px) {
+      max-width: 100%;
+      padding-left: 0;
       text-align: center;
-      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-    }
-
-    @media (max-width: 768px) {
-      font-size: clamp(1.2rem, 4vw, 1.8rem);
-      line-height: 1.3;
-      transform: translate(-2rem, 10rem);
-    }
-
-    @media (max-width: 480px) {
-      font-size: 1.2rem;
-      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
     }
 
     br {
@@ -131,7 +182,7 @@
     }
   }
 
-  /* ===== NEW: Quote Styles ===== */
+  // ── Quote ──
   .about-quote {
     margin: 2rem 0 1.5rem;
     padding-left: 1.5rem;

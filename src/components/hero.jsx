@@ -1,23 +1,40 @@
-import React from "react";
+// Hero.jsx
+import React, { useState, useEffect } from "react";
 import "./hero.scss";
-import coffeeImage from "../assets/coffeeDrink.png"; // Your hero image
-// import circle from "../assets/half-cut.png";
+import coffeeImage from "../assets/coffeeDrink.png";
+import useLocomotiveScroll from "../hooks/useLocomotiveScroll";
+import useHeroAnimation from "../hooks/useHeroAnimation";
 
 const Hero = () => {
+  const scrollRef = useLocomotiveScroll();
+  useHeroAnimation();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Show after 3 seconds
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="hero" id="home">
+    <section className="hero" id="home" ref={scrollRef} data-scroll-container>
       <div className="hero-container">
         <div className="hero-wrapper"></div>
-        {/* <div className="circle-image-wrapper">
-          <img src={circle} alt="circle" className="circle" />
-        </div> */}
         <div className="hero-content">
-          <h1 className="hero-title">
+          <h1
+            className="hero-title"
+            data-scroll
+            data-scroll-speed="0.1"
+            data-scroll-delay="2"
+          >
             Unica's <br />
             <span>Cafe</span>
           </h1>
 
-          <p className="hero-description">
+          <p className={`hero-description ${isVisible ? "visible" : ""}`}>
             Where every cup <br />
             feels like home.
           </p>
@@ -28,11 +45,6 @@ const Hero = () => {
         <div className="hero-image-wrapper">
           <img src={coffeeImage} alt="coffee late" className="hero-image" />
         </div>
-
-        {/* Created by credit - 2026 */}
-        {/* <div className="credit">
-          <p>2026 created by dan</p>
-        </div> */}
       </div>
     </section>
   );

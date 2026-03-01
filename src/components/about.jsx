@@ -1,7 +1,9 @@
 import React from "react";
+import useAboutAnimation from "../hooks/useAboutAnimation";
 import "./about.scss";
 
 const About = () => {
+  useAboutAnimation();
   return (
     <section className="about" id="about">
       <div className="about-container">

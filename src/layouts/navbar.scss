@@ -78,8 +78,8 @@
 // ── DESKTOP MENU ──
 .desktop-menu {
   display: flex;
-  gap: 0.2rem;
-  margin-top: 4rem;
+  gap: 0rem;
+  margin-top: 5rem;
   align-items: flex-end;
   flex-direction: column;
 
@@ -87,15 +87,15 @@
     text-decoration: none;
     color: #9d6b53;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: clamp(1rem, 5vw, 1.2rem);
     transition: color 0.3s ease;
 
     &:hover {
-      color: black;
+      color: #774936;
     }
 
     &.active {
-      color: black;
+      color: #774936;
       font-weight: 600;
     }
   }

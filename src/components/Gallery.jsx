@@ -1,14 +1,13 @@
 import React from "react";
+import useGalleryAnimation from "../hooks/useGalleryAnimation";
 import "./Gallery.scss";
 
 // ── Import all images — Vite requires static imports for src/assets ──
-import Drink from "../assets/Drink.jpg";
-// Swap placeholders with your actual photos when ready:
-// import Gallery1 from "../assets/gallery-1.jpg";
-// import Gallery2 from "../assets/gallery-2.jpg";
-// import Gallery3 from "../assets/gallery-3.jpg";
-// import Gallery4 from "../assets/gallery-4.jpg";
-// import Gallery5 from "../assets/gallery-5.jpg";
+import Drink from "../assets/Drink.png";
+import Ambiance from "../assets/ambiance.jpg";
+import Coffee from "../assets/cupCoffee.png";
+import Croffles from "../assets/croffle.png";
+import Interior from "../assets/interior.jpg";
 
 // ── Data — 3 spreads ──
 const spreads = [
@@ -21,7 +20,7 @@ const spreads = [
       index: "01",
     },
     right: {
-      image: Drink, // swap → Gallery2
+      image: Ambiance, // swap → Gallery2
       alt: "Coffee drinks",
       index: "02",
     },
@@ -41,7 +40,7 @@ const spreads = [
       attr: "— Maria L., regular customer",
     },
     right: {
-      image: Drink, // swap → Gallery3
+      image: Coffee, // swap → Gallery3
       alt: "Food",
       index: "03",
     },
@@ -51,12 +50,12 @@ const spreads = [
     id: 3,
     type: "stack-gap-portrait", // landscape + caption | gap | tall portrait
     left: {
-      image: Drink, // swap → Gallery4
+      image: Croffles, // swap → Gallery4
       alt: "Croffles",
       index: "04",
     },
     right: {
-      image: Drink, // swap → Gallery5
+      image: Interior, // swap → Gallery5
       alt: "Barista",
       index: "05",
     },
@@ -107,77 +106,80 @@ const Photo = ({ src, alt, index, variant }) => (
 
 // ── Component ──
 const Gallery = () => (
-  <section className="gallery" id="gallery">
-    {/* Texture overlay */}
-    <div className="gallery-wrapper">
-      <div className="gallery-texture" />
-    </div>
-
-    <div className="gallery-container">
-      {/* Header */}
-      <div className="gallery-header">
-        <div>
-          <p className="gallery-eyebrow">A peek inside</p>
-          <h2 className="gallery-title">Gallery</h2>
-        </div>
-        <span className="gallery-count">5 photos</span>
+  useGalleryAnimation(),
+  (
+    <section className="gallery" id="gallery">
+      {/* Texture overlay */}
+      <div className="gallery-wrapper">
+        <div className="gallery-texture" />
       </div>
 
-      {/* Spreads */}
-      <div className="spreads">
-        {/* ── Spread 1: portrait | gap | landscape + caption ── */}
-        <div className="spread spread--1">
-          <Photo
-            src={spreads[0].left.image}
-            alt={spreads[0].left.alt}
-            index={spreads[0].left.index}
-            variant="portrait"
-          />
-          <GapCol label={spreads[0].gapLabel} />
-          <Photo
-            src={spreads[0].right.image}
-            alt={spreads[0].right.alt}
-            index={spreads[0].right.index}
-            variant="landscape"
-          />
-          <Caption data={spreads[0].caption} />
-        </div>
-
-        {/* ── Spread 2: pull quote | gap | square photo ── */}
-        <div className="spread spread--2">
-          <div className="pull-quote-block">
-            <p className="pull-quote">{spreads[1].quote.text}</p>
-            <p className="pull-attr">{spreads[1].quote.attr}</p>
+      <div className="gallery-container">
+        {/* Header */}
+        <div className="gallery-header">
+          <div>
+            <p className="gallery-eyebrow">A peek inside</p>
+            <h2 className="gallery-title">Gallery</h2>
           </div>
-          <GapCol label={spreads[1].gapLabel} />
-          <Photo
-            src={spreads[1].right.image}
-            alt={spreads[1].right.alt}
-            index={spreads[1].right.index}
-            variant="square"
-          />
+          <span className="gallery-count">5 photos</span>
         </div>
 
-        {/* ── Spread 3: landscape + caption | gap | tall portrait ── */}
-        <div className="spread spread--3">
-          <Photo
-            src={spreads[2].left.image}
-            alt={spreads[2].left.alt}
-            index={spreads[2].left.index}
-            variant="landscape"
-          />
-          <Caption data={spreads[2].caption} />
-          <GapCol label={spreads[2].gapLabel} />
-          <Photo
-            src={spreads[2].right.image}
-            alt={spreads[2].right.alt}
-            index={spreads[2].right.index}
-            variant="portrait"
-          />
+        {/* Spreads */}
+        <div className="spreads">
+          {/* ── Spread 1: portrait | gap | landscape + caption ── */}
+          <div className="spread spread--1">
+            <Photo
+              src={spreads[0].left.image}
+              alt={spreads[0].left.alt}
+              index={spreads[0].left.index}
+              variant="portrait"
+            />
+            <GapCol label={spreads[0].gapLabel} />
+            <Photo
+              src={spreads[0].right.image}
+              alt={spreads[0].right.alt}
+              index={spreads[0].right.index}
+              variant="landscape"
+            />
+            <Caption data={spreads[0].caption} />
+          </div>
+
+          {/* ── Spread 2: pull quote | gap | square photo ── */}
+          <div className="spread spread--2">
+            <div className="pull-quote-block">
+              <p className="pull-quote">{spreads[1].quote.text}</p>
+              <p className="pull-attr">{spreads[1].quote.attr}</p>
+            </div>
+            <GapCol label={spreads[1].gapLabel} />
+            <Photo
+              src={spreads[1].right.image}
+              alt={spreads[1].right.alt}
+              index={spreads[1].right.index}
+              variant="square"
+            />
+          </div>
+
+          {/* ── Spread 3: landscape + caption | gap | tall portrait ── */}
+          <div className="spread spread--3">
+            <Photo
+              src={spreads[2].left.image}
+              alt={spreads[2].left.alt}
+              index={spreads[2].left.index}
+              variant="landscape"
+            />
+            <Caption data={spreads[2].caption} />
+            <GapCol label={spreads[2].gapLabel} />
+            <Photo
+              src={spreads[2].right.image}
+              alt={spreads[2].right.alt}
+              index={spreads[2].right.index}
+              variant="portrait"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )
 );
 
 export default Gallery;

@@ -39,7 +39,6 @@
   // ── Main container ──
   .menu-container {
     width: 100%;
-    max-width: 1400px;
     margin: 0 auto;
     padding: 6rem 4rem 8rem;
     position: relative;
@@ -65,7 +64,8 @@
 
     @media (max-width: 480px) {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      text-align: center;
       gap: 0.5rem;
       margin-bottom: 2.5rem;
     }
@@ -82,11 +82,15 @@
   }
 
   .menu-heading {
-    font-size: clamp(2rem, 5vw, 5rem);
+    font-size: clamp(3rem, 5vw, 5rem);
     font-weight: 900;
-    -webkit-text-stroke: 4px #9d6b53;
+    -webkit-text-stroke: 3px #9d6b53;
     color: transparent;
     line-height: 0.9;
+
+    @media (min-width: 300px) and (max-width: 767px) {
+      -webkit-text-stroke: 2px #9d6b53;
+    }
   }
 
   .menu-count {
@@ -255,7 +259,7 @@
   // ── Column headers (Hot/Iced, Single/Overload) ──
   .column-headers {
     display: flex;
-    justify-content: flex-end;
+    justify-content: start;
     gap: 2.5rem;
     margin-bottom: 0.6rem;
 
