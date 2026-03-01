@@ -106,8 +106,8 @@
     position: absolute;
 
     // Desktop: above the bottom-right title
-    bottom: calc(20vw * 0.85 + 2rem);
-    right: 4rem;
+    bottom: calc(20vw * 0.65 + 2rem);
+    right: 42rem;
 
     @media (min-width: 1920px) {
       bottom: calc(20vw * 0.65 + 2rem);
