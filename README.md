@@ -13,7 +13,7 @@ A warm, editorial-style cafe website built for **Unica's Cafe** in Cabatuan, Ilo
 | Hero | Oversized editorial typography with coffee cup imagery |
 | About | Description, customer quote, outlined background title |
 | Menu | Accordion-style with subcategories and pricing |
-| Gallery | Horizontal drag-to-scroll photo strip |
+| Gallery | Asymmetrical grid photos |
 | Contact | Conversational fill-in-the-blank form |
 
 ---
