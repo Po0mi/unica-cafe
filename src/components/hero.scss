@@ -80,7 +80,7 @@
     @media (min-width: 1920px) {
       font-size: clamp(2.5rem, 30vw, 24rem);
     }
-    @media (min-width: 1440px) {
+    @media (max-width: 1440px) {
       font-size: clamp(2.5rem, 30vw, 20rem);
     }
     @media (min-width: 300px) and (max-width: 767px) {
@@ -129,7 +129,7 @@
       right: 2.3rem;
     }
 
-    @media (min-width: 1440px) {
+    @media (max-width: 1440px) {
       font-size: 4.5rem;
     }
 

@@ -71,7 +71,7 @@
       white-space: nowrap;
       display: block;
 
-      @media (min-width: 1440px) {
+      @media (max-width: 1440px) {
         -webkit-text-stroke: 5px #9d6b53;
         font-size: 18rem;
       }
