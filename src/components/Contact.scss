@@ -276,7 +276,71 @@
       }
     }
   }
+  .status-message {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-align: center;
+    animation: slideIn 0.3s ease;
 
+    &.success {
+      background: rgba(76, 175, 80, 0.8);
+      color: white;
+      border: 1px solid rgba(76, 175, 80, 0.3);
+    }
+
+    &.error {
+      background: rgba(244, 67, 54, 0.8);
+      color: #f44336;
+      border: 1px solid rgba(244, 67, 54, 0.3);
+    }
+  }
+
+  .submit-btn {
+    &.submitting {
+      opacity: 0.7;
+      cursor: not-allowed;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+        border: 2px solid transparent;
+        border-top-color: currentColor;
+        border-radius: 50%;
+        animation: spin 1s ease infinite;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
   // ── Footer ──
   .contact-footer {
     display: flex;

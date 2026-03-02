@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import useContactAnimation from "../hooks/useContactAnimation";
+import emailjs from "@emailjs/browser";
 import "./Contact.scss";
 
 const Contact = () => {
@@ -9,8 +10,25 @@ const Contact = () => {
     message: "",
     email: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: "", message: "" });
+
   useContactAnimation();
   const messageRef = useRef(null);
+  const formRef = useRef(null);
+
+  // Format current time for the email template
+  const getCurrentTime = () => {
+    const now = new Date();
+    return now.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +39,11 @@ const Contact = () => {
       messageRef.current.style.height = "auto";
       messageRef.current.style.height = messageRef.current.scrollHeight + "px";
     }
+
+    // Clear status when user starts typing again
+    if (submitStatus.message) {
+      setSubmitStatus({ type: "", message: "" });
+    }
   };
 
   const getInputWidth = (value, minChars = 10) => {
@@ -28,10 +51,83 @@ const Contact = () => {
     return `${len * 0.55}em`;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // hook up your email service here (e.g. EmailJS / Formspree)
-    console.log("Submitted:", fields);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: "", message: "" });
+
+    // Basic validation
+    if (!fields.name || !fields.intent || !fields.message || !fields.email) {
+      setSubmitStatus({
+        type: "error",
+        message: "Please fill in all fields",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(fields.email)) {
+      setSubmitStatus({
+        type: "error",
+        message: "Please enter a valid email address",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Prepare template parameters matching your custom template
+      const templateParams = {
+        name: fields.name, // For {{name}} in template
+        email: fields.email, // For {{email}} in template
+        intent: fields.intent, // For {{intent}} in template
+        message: fields.message, // For {{message}} in template
+        time: getCurrentTime(), // For {{time}} in template
+        to_name: "Unica's Cafe Team", // Who the email is addressed to
+        reply_to: fields.email, // Set reply-to as the sender's email
+      };
+
+      console.log("Sending with params:", templateParams); // For debugging
+
+      // Using your provided credentials
+      const result = await emailjs.send(
+        "service_yzkgjhm", // Your Service ID
+        "template_ba6ei21", // Your Template ID
+        templateParams,
+        "gL2IeAdmyzx77E6Qw", // Your Public Key
+      );
+
+      console.log("Email sent successfully:", result.text);
+
+      setSubmitStatus({
+        type: "success",
+        message: "Message sent successfully! We'll get back to you soon.",
+      });
+
+      // Clear form
+      setFields({
+        name: "",
+        intent: "",
+        message: "",
+        email: "",
+      });
+
+      // Reset textarea height
+      if (messageRef.current) {
+        messageRef.current.style.height = "auto";
+      }
+    } catch (error) {
+      console.error("Email sending failed:", error);
+      console.error("Error details:", error.text || error.message);
+      setSubmitStatus({
+        type: "error",
+        message: "Failed to send message. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -51,8 +147,15 @@ const Contact = () => {
           <span className="contact-note">Fill in the blanks</span>
         </div>
 
+        {/* Status message */}
+        {submitStatus.message && (
+          <div className={`status-message ${submitStatus.type}`}>
+            {submitStatus.message}
+          </div>
+        )}
+
         {/* Conversational form */}
-        <form className="contact-form" onSubmit={handleSubmit}>
+        <form className="contact-form" onSubmit={handleSubmit} ref={formRef}>
           <p className="form-sentence">
             {/* Line 1: name + intent */}
             <span className="sentence-text">Hi, my name is </span>
@@ -66,6 +169,7 @@ const Contact = () => {
                 placeholder="your name"
                 style={{ width: getInputWidth(fields.name, 10) }}
                 autoComplete="off"
+                disabled={isSubmitting}
               />
             </span>
             <span className="sentence-text"> and I'd like to </span>
@@ -79,6 +183,7 @@ const Contact = () => {
                 placeholder="ask about reservations"
                 style={{ width: getInputWidth(fields.intent, 22) }}
                 autoComplete="off"
+                disabled={isSubmitting}
               />
             </span>
             <span className="sentence-text">.</span>
@@ -94,6 +199,7 @@ const Contact = () => {
                 placeholder="write something here..."
                 rows={1}
                 ref={messageRef}
+                disabled={isSubmitting}
               />
             </span>
 
@@ -110,6 +216,7 @@ const Contact = () => {
                   placeholder="your@email.com"
                   style={{ width: getInputWidth(fields.email, 20) }}
                   autoComplete="off"
+                  disabled={isSubmitting}
                 />
               </span>
               <span className="sentence-text">.</span>
@@ -129,8 +236,12 @@ const Contact = () => {
                 @unicascafecab
               </a>
             </div>
-            <button className="submit-btn" type="submit">
-              Send message
+            <button
+              className={`submit-btn ${isSubmitting ? "submitting" : ""}`}
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Send message"}
             </button>
           </div>
         </form>
