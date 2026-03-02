@@ -80,7 +80,9 @@
     @media (min-width: 1920px) {
       font-size: clamp(2.5rem, 30vw, 24rem);
     }
-
+    @media (min-width: 1440px) {
+      font-size: clamp(2.5rem, 30vw, 20rem);
+    }
     @media (min-width: 300px) and (max-width: 767px) {
       font-size: clamp(1.8rem, 20vw, 10rem);
       text-align: center;
@@ -127,7 +129,8 @@
       right: 2.3rem;
     }
 
-    @media (min-width: 768px) and (max-width: 1920px) {
+    @media (min-width: 1440px) {
+      font-size: 4.5rem;
     }
 
     @media (min-width: 300px) and (max-width: 767px) {

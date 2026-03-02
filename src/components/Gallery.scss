@@ -37,6 +37,9 @@
     @media (min-width: 1921px) and (max-width: 2560px) {
       max-width: 1620px;
     }
+    @media (min-width: 1440px) {
+      max-width: 1000px;
+    }
     @media (max-width: 1024px) {
       padding: 5rem 2rem 8rem;
     }
