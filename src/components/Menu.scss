@@ -264,10 +264,10 @@
     margin-bottom: 0.6rem;
 
     span {
-      font-size: 0.9rem;
+      font-size: 1rem;
       letter-spacing: 0.13em;
       text-transform: uppercase;
-      color: rgba(157, 107, 83);
+      color: #774936;
       min-width: 45px;
       text-align: right;
     }
@@ -311,22 +311,31 @@
   }
 
   .sub-name {
-    font-size: 0.9rem;
+    font-size: 1.4rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #9d6b53;
+    color: #774936;
     opacity: 1;
     white-space: nowrap;
-    font-weight: 500;
+    font-weight: 900;
+
+    @media (max-width: 480px) {
+      font-size: 1.2rem;
+      white-space: normal;
+    }
   }
 
   .sub-note {
-    font-size: 0.6rem;
+    font-size: 0.9rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #9d6b53;
+    color: #774936;
     opacity: 1;
     white-space: nowrap;
+
+    @media (max-width: 480px) {
+      font-size: 0.75rem;
+    }
   }
 
   .sub-rule {
@@ -346,25 +355,37 @@
     &:hover {
       padding-left: 0.35rem;
     }
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+    }
   }
 
   .item-name {
-    font-size: clamp(0.78rem, 1.4vw, 0.9rem);
+    font-size: clamp(0.7rem, 1.4vw, 1.2rem);
     font-weight: 300;
-    color: #9d6b53;
+    color: #774936;
 
     @media (max-width: 480px) {
-      font-size: 0.78rem;
+      font-size: 0.95rem;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
     }
   }
 
   .item-dots {
     flex: 1;
-    border-bottom: 1px dotted rgba(157, 107, 83, 0.18);
+    border-bottom: 1px dotted rgba(157, 107, 83, 1);
     margin: 0 0.75rem;
     position: relative;
     top: -3px;
     min-width: 16px;
+
+    @media (max-width: 480px) {
+      display: none; // Remove dots on mobile for cleaner layout
+    }
   }
 
   // ── Prices ──
@@ -373,19 +394,109 @@
     gap: 2.5rem;
 
     @media (max-width: 480px) {
-      gap: 1.5rem;
+      width: 100%;
+      gap: 1rem;
+      justify-content: flex-start;
     }
   }
 
   .price {
     font-size: clamp(0.75rem, 1.3vw, 0.88rem);
     font-weight: 400;
-    color: #9d6b53;
+    color: #774936;
     min-width: 32px;
     text-align: right;
 
     &.muted {
       opacity: 0.35;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.85rem;
+      min-width: auto;
+      text-align: left;
+      background: rgba(157, 107, 83, 0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  }
+
+  // ════════════════════════════════════════════════
+  // MOBILE: Clean price display
+  // ════════════════════════════════════════════════
+  @media (max-width: 480px) {
+    // Hot/Iced price display
+    .menu-item:has(.item-prices) {
+      .item-prices {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        .price {
+          &:first-child::before {
+            content: "Hot: ";
+            font-weight: 500;
+            opacity: 0.7;
+          }
+
+          &:last-child::before {
+            content: "Iced: ";
+            font-weight: 500;
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+
+    // Single/Overload price display
+    .menu-item:has(.price.muted) {
+      .item-prices {
+        .price {
+          &:first-child::before {
+            content: "Single: ";
+            font-weight: 500;
+            opacity: 0.7;
+          }
+
+          &.muted::before {
+            content: "Overload: ";
+            font-weight: 500;
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+
+    // Single price items
+    .menu-item:not(:has(.item-prices)) {
+      .price {
+        &::before {
+          content: "₱";
+          margin-right: 2px;
+        }
+      }
+    }
+
+    // Hide all column headers on mobile
+    .column-headers {
+      display: none !important;
+    }
+
+    // Adjust spacing
+    .subcategory {
+      margin-bottom: 1.5rem;
+    }
+
+    .sub-header {
+      margin-bottom: 1rem;
+    }
+
+    // Add some visual separation
+    .sub-name {
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
     }
   }
 }
