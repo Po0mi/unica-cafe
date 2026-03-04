@@ -1,7 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  memo,
+  useCallback,
+  useMemo,
+} from "react";
 import useMenuAnimation from "../hooks/useMenuAnimation";
 import "./Menu.scss";
 
+// ── Static data — defined outside the module so it's never recreated ──
 const menuData = [
   {
     id: "beverages",
@@ -149,13 +157,14 @@ const menuData = [
   },
 ];
 
-// ── Single menu item row ──
-const MenuItem = ({ item, hasHotIced, hasSingleOverload }) => {
+// ── Single menu item row ─────────────────────────────────────
+// memo: item rows are pure — skip re-render unless props change
+const MenuItem = memo(({ item, hasHotIced, hasSingleOverload }) => {
   if (hasHotIced) {
     return (
       <div className="menu-item">
         <span className="item-name">{item.name}</span>
-        <span className="item-dots" />
+        <span className="item-dots" aria-hidden="true" />
         <div className="item-prices">
           <span className="price">{item.hot ?? "—"}</span>
           <span className="price">{item.iced ?? "—"}</span>
@@ -168,7 +177,7 @@ const MenuItem = ({ item, hasHotIced, hasSingleOverload }) => {
     return (
       <div className="menu-item">
         <span className="item-name">{item.name}</span>
-        <span className="item-dots" />
+        <span className="item-dots" aria-hidden="true" />
         <div className="item-prices">
           <span className="price">{item.single ?? "—"}</span>
           <span className="price muted">{item.overload ?? "—"}</span>
@@ -180,33 +189,76 @@ const MenuItem = ({ item, hasHotIced, hasSingleOverload }) => {
   return (
     <div className="menu-item">
       <span className="item-name">{item.name}</span>
-      <span className="item-dots" />
+      <span className="item-dots" aria-hidden="true" />
       <span className="price">{item.price}</span>
     </div>
   );
-};
+});
 
-// ── Accordion item ──
-const AccordionItem = ({ section, isOpen, onToggle }) => {
+MenuItem.displayName = "MenuItem";
+
+// ── Subcategory block ────────────────────────────────────────
+// Extracted so AccordionItem doesn't re-render subcategory trees on every open/close
+const Subcategory = memo(({ sub, hasHotIced }) => (
+  <div className="subcategory">
+    <div className="sub-header">
+      <span className="sub-name">{sub.name}</span>
+      {sub.note && <span className="sub-note">{sub.note}</span>}
+      <div className="sub-rule" aria-hidden="true" />
+    </div>
+
+    {sub.hasSingleOverload && (
+      <div className="column-headers sub">
+        <span>Single</span>
+        <span>Overload</span>
+      </div>
+    )}
+
+    {sub.items.map((item) => (
+      <MenuItem
+        key={item.name}
+        item={item}
+        hasHotIced={hasHotIced}
+        hasSingleOverload={sub.hasSingleOverload}
+      />
+    ))}
+  </div>
+));
+
+Subcategory.displayName = "Subcategory";
+
+// ── Accordion item ───────────────────────────────────────────
+const AccordionItem = memo(({ section, isOpen, onToggle }) => {
   const panelRef = useRef(null);
 
   useEffect(() => {
     const panel = panelRef.current;
     if (!panel) return;
-    if (isOpen) {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } else {
-      panel.style.maxHeight = null;
-    }
+    // Use null instead of empty string — sets inline style to "unset"
+    panel.style.maxHeight = isOpen ? `${panel.scrollHeight}px` : null;
   }, [isOpen]);
+
+  // Pre-compute subcategories list — stable between renders when section is stable
+  const subcategories = useMemo(
+    () =>
+      section.subcategories.map((sub) => (
+        <Subcategory key={sub.name} sub={sub} hasHotIced={section.hasHotIced} />
+      )),
+    [section],
+  );
 
   return (
     <div className={`accordion-item ${isOpen ? "open" : ""}`}>
-      <button className="accordion-trigger" onClick={onToggle}>
+      <button
+        className="accordion-trigger"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={`panel-${section.id}`}
+      >
         <span className="trigger-index">{section.index}</span>
         <span className="trigger-title">{section.label}</span>
         <span className="trigger-badge">{section.badge}</span>
-        <div className="trigger-icon">
+        <div className="trigger-icon" aria-hidden="true">
           <svg viewBox="0 0 12 12" fill="none">
             <line
               x1="6"
@@ -228,67 +280,61 @@ const AccordionItem = ({ section, isOpen, onToggle }) => {
         </div>
       </button>
 
-      <div className="accordion-panel" ref={panelRef}>
+      <div
+        className="accordion-panel"
+        ref={panelRef}
+        id={`panel-${section.id}`}
+        role="region"
+        aria-labelledby={`trigger-${section.id}`}
+      >
         <div className="accordion-panel-inner">
-          {/* Hot / Iced column headers */}
           {section.hasHotIced && (
             <div className="column-headers">
               <span>Hot 8oz</span>
               <span>Iced 16oz</span>
             </div>
           )}
-
-          <div className="subcategories">
-            {section.subcategories.map((sub) => (
-              <div className="subcategory" key={sub.name}>
-                <div className="sub-header">
-                  <span className="sub-name">{sub.name}</span>
-                  {sub.note && <span className="sub-note">{sub.note}</span>}
-                  <div className="sub-rule" />
-                </div>
-
-                {/* Single / Overload headers for snacks */}
-                {sub.hasSingleOverload && (
-                  <div className="column-headers sub">
-                    <span>Single</span>
-                    <span>Overload</span>
-                  </div>
-                )}
-
-                {sub.items.map((item) => (
-                  <MenuItem
-                    key={item.name}
-                    item={item}
-                    hasHotIced={section.hasHotIced}
-                    hasSingleOverload={sub.hasSingleOverload}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
+          <div className="subcategories">{subcategories}</div>
         </div>
       </div>
     </div>
   );
-};
+});
 
-// ── Main Menu component ──
+AccordionItem.displayName = "AccordionItem";
+
+// ── Main Menu component ──────────────────────────────────────
 const Menu = () => {
   const [openId, setOpenId] = useState(null);
   useMenuAnimation();
-  const handleToggle = (id) => {
+
+  // Stable toggle — won't cause AccordionItem re-renders from a new fn reference
+  const handleToggle = useCallback((id) => {
     setOpenId((prev) => (prev === id ? null : id));
-  };
+  }, []);
+
+  // Stable accordion list — only rebuilds if menuData changes (it never does)
+  const accordionItems = useMemo(
+    () =>
+      menuData.map((section) => (
+        <AccordionItem
+          key={section.id}
+          section={section}
+          isOpen={openId === section.id}
+          onToggle={() => handleToggle(section.id)}
+        />
+      )),
+    // openId intentionally included — isOpen prop must stay in sync
+    [openId, handleToggle],
+  );
 
   return (
     <section className="menu" id="menu">
-      {/* Texture overlay */}
-      <div className="menu-wrapper">
+      <div className="menu-wrapper" aria-hidden="true">
         <div className="menu-texture" />
       </div>
 
       <div className="menu-container">
-        {/* Header */}
         <div className="menu-header">
           <div>
             <p className="menu-eyebrow">What we serve</p>
@@ -297,16 +343,8 @@ const Menu = () => {
           <span className="menu-count">3 categories</span>
         </div>
 
-        {/* Accordion */}
-        <div className="accordion">
-          {menuData.map((section) => (
-            <AccordionItem
-              key={section.id}
-              section={section}
-              isOpen={openId === section.id}
-              onToggle={() => handleToggle(section.id)}
-            />
-          ))}
+        <div className="accordion" role="list">
+          {accordionItems}
         </div>
       </div>
     </section>
