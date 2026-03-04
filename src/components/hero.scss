@@ -103,7 +103,7 @@
 
     // 4K / ultrawide
     @media (min-width: 1921px) {
-      font-size: clamp(2.5rem, 24vw, 30rem);
+      font-size: clamp(2.5rem, 30vw, 30rem);
     }
 
     // Large desktop (1441–1920)
@@ -198,7 +198,7 @@
 
     // Large desktop (1441–1920)
     @media (max-width: 1920px) {
-      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-size: clamp(3rem, 8vw, 6.1rem);
       right: 3rem;
     }
 
