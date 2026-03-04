@@ -92,7 +92,7 @@
 
     // Large screens around 1440px
     @media (min-width: 1201px) and (max-width: 1920px) {
-      font-size: clamp(3rem, 25vw, 20rem);
+      font-size: clamp(2.5rem, 30vw, 30rem);
       text-align: left;
     }
 
@@ -157,8 +157,9 @@
     }
 
     @media (min-width: 1201px) and (max-width: 1920px) {
-      font-size: clamp(2rem, 10vw, 4.6rem);
-      right: 3rem;
+      font-size: clamp(3rem, 5vw, 8rem);
+      right: 2rem;
+      bottom: 0;
     }
 
     @media (min-width: 768px) and (max-width: 1200px) {
