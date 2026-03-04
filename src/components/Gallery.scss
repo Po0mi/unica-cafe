@@ -34,19 +34,9 @@
     position: relative;
     z-index: 2;
 
-    // Ultra-wide monitors (2560px)
-    @media (width: 2560px) {
-      max-width: 2000px;
-    }
-
-    // Large screens (1921px–2559px)
-    @media (min-width: 1921px) and (max-width: 2560px) {
-      max-width: 1620px;
-    }
-
     // Medium-large screens
     @media (min-width: 1201px) and (max-width: 1920px) {
-      max-width: 1050px;
+      max-width: 1620px;
     }
 
     // Tablets
