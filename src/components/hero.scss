@@ -87,7 +87,7 @@
 
     // Ultra-wide monitors (1921px–2560px)
     @media (min-width: 1921px) and (max-width: 2560px) {
-      font-size: clamp(2.5rem, 30vw, 26rem);
+      font-size: clamp(2.5rem, 30vw, 30rem);
     }
 
     // Large screens around 1440px
@@ -151,7 +151,7 @@
     }
 
     @media (min-width: 1921px) and (max-width: 2560px) {
-      font-size: clamp(3rem, 5vw, 6.5rem);
+      font-size: clamp(3rem, 5vw, 8rem);
       right: 2rem;
       bottom: 0;
     }
