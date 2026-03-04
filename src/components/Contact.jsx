@@ -230,7 +230,7 @@ const Contact = () => {
                 Cabatuan, Iloilo, Philippines
               </a>
               <a className="info-item" href="#">
-                Open daily · 11am – 9pm
+                Open daily · 11am – 7pm
               </a>
               <a className="info-item" href="#">
                 @unicascafecab
