@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "./hero.scss";
 import { gsap } from "gsap";
-import coffeeImage from "../assets/coffeeDrink.png";
+import coffeeImage from "../assets/coffeeDrink.webp";
 import useHeroAnimation from "../hooks/useHeroAnimation";
 
 const Hero = () => {

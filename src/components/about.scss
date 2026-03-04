@@ -28,14 +28,14 @@
   .about-wrapper {
     position: absolute;
     inset: 0;
-    background-image: url(../assets/cement-texture.jpg);
+    background-image: url(../assets/cement-texture.webp);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0.2;
     mix-blend-mode: multiply;
+    z-index: 1;
     pointer-events: none;
-    z-index: 0;
   }
 
   // ── Content ──────────────────────────────────────────────
