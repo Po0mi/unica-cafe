@@ -113,7 +113,7 @@
 
     // Standard desktop (1201–1440)
     @media (max-width: 1440px) {
-      font-size: clamp(2.5rem, 26vw, 22rem);
+      font-size: clamp(2.5rem, 26vw, 18rem);
     }
 
     // Laptop / large tablet landscape (1025–1200)
@@ -204,7 +204,7 @@
 
     // Standard desktop (1201–1440)
     @media (max-width: 1440px) {
-      font-size: clamp(2.5rem, 9vw, 1rem);
+      font-size: clamp(2.5rem, 9vw, 5rem);
       right: 2rem;
     }
 
