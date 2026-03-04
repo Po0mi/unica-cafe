@@ -119,57 +119,6 @@
     }
   }
 
-  // ── Eyebrow — above title on desktop, above title on mobile ──
-  .about-eyebrow {
-    font-size: 1rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #9d6b53;
-    font-weight: 500;
-    position: absolute;
-    white-space: nowrap;
-
-    // Desktop: floats just above the bottom-right title block
-    bottom: calc(20vw * 0.85 + 1.5rem);
-    right: 60rem;
-
-    @media (min-width: 1921px) {
-      bottom: calc(22vw * 0.85 + 1.5rem);
-      font-size: 1.1rem;
-    }
-
-    @media (min-width: 1201px) and (max-width: 1920px) {
-      bottom: calc(20vw * 0.85 + 1.25rem);
-      right: 40rem;
-    }
-
-    @media (max-width: 1200px) {
-      bottom: calc(20vw * 0.85 + 1rem);
-    }
-
-    @media (max-width: 1024px) {
-      bottom: calc(20vw * 0.85 + 0.75rem);
-      font-size: 0.9rem;
-      letter-spacing: 0.18em;
-    }
-
-    // Mobile: in-flow, sits just above the in-flow title
-    @media (max-width: 767px) {
-      position: static;
-      order: -2; // eyebrow → title → description
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-align: center;
-      width: 100%;
-      margin-bottom: 0.25rem;
-    }
-
-    @media (max-width: 479px) {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-    }
-  }
-
   // ── Description ──────────────────────────────────────────
   .about-description {
     font-size: clamp(1rem, 2.5vw, 1.7rem);

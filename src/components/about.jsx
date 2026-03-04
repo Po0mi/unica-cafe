@@ -27,7 +27,6 @@ const About = () => {
               <cite>– Maria L., regular customer</cite>
             </blockquote>
           </div>
-          <p className="about-eyebrow">Who we are</p>
           <div className="about-title">
             <h1>About</h1>
           </div>
