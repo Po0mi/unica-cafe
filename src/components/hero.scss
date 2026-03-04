@@ -198,8 +198,8 @@
 
     // Large desktop (1441–1920)
     @media (max-width: 1920px) {
-      font-size: clamp(3rem, 8vw, 6.1rem);
-      right: 3rem;
+      font-size: clamp(3rem, 8vw, 6rem);
+      right: 2rem;
     }
 
     // Standard desktop (1201–1440)
