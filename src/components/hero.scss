@@ -85,13 +85,17 @@
     color: #9d6b53;
     z-index: 3;
 
-    // Large screens around 1440px
+    @media (max-width: 1440px) {
+      .hero-title {
+        font-size: clamp(2.5rem, 20vw, 20rem);
+        text-align: left;
+      }
+    }
     @media (min-width: 1201px) and (max-width: 1920px) {
       font-size: clamp(2.5rem, 30vw, 25rem);
       text-align: left;
     }
 
-    // Medium-large screens (768px–1200px)
     @media (min-width: 768px) and (max-width: 1200px) {
       font-size: clamp(3rem, 22vw, 16rem);
       text-align: center;
