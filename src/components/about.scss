@@ -19,6 +19,10 @@
     @media (max-width: 1024px) {
       padding: 0 2rem;
     }
+
+    @media (max-width: 767px) {
+      padding: 0 1.25rem;
+    }
   }
 
   .about-wrapper {
@@ -34,6 +38,9 @@
     z-index: 0;
   }
 
+  // ── Content ──────────────────────────────────────────────
+  // Desktop: row layout with description on the left, title anchored bottom-right absolutely
+  // Mobile:  flex column — title on top, description below
   .about-content {
     width: 100%;
     height: 100vh;
@@ -48,13 +55,15 @@
     }
 
     @media (max-width: 767px) {
-      display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0 1.25rem;
     }
   }
 
-  // ── Title — bottom right on desktop, top left on mobile ──
+  // ── Title — bottom right on desktop, in-flow on mobile ──
   .about-title {
     position: absolute;
     bottom: 0;
@@ -62,8 +71,16 @@
     z-index: 100;
     margin: 0;
 
+    // Mobile: pull out of absolute, sit in flow at top of column
+    @media (max-width: 767px) {
+      position: static;
+      order: -1; // always first in the flex column
+      text-align: center;
+      width: 100%;
+    }
+
     h1 {
-      font-size: clamp(5rem, 20vw, 20rem);
+      font-size: clamp(4rem, 20vw, 20rem);
       font-weight: 700;
       line-height: 0.85;
       -webkit-text-stroke: 7px #9d6b53;
@@ -71,33 +88,38 @@
       white-space: nowrap;
       display: block;
 
-      @media (max-width: 1440px) {
-        -webkit-text-stroke: 5px #9d6b53;
-        font-size: 18rem;
-      }
-
       @media (min-width: 1921px) {
-        font-size: clamp(16rem, 30vw, 30rem);
+        font-size: clamp(16rem, 22vw, 28rem);
         -webkit-text-stroke: 8px #9d6b53;
       }
 
+      @media (max-width: 1440px) {
+        -webkit-text-stroke: 6px #9d6b53;
+      }
+
+      @media (max-width: 1200px) {
+        font-size: clamp(4rem, 20vw, 16rem);
+        -webkit-text-stroke: 5px #9d6b53;
+      }
+
+      @media (max-width: 1024px) {
+        -webkit-text-stroke: 4px #9d6b53;
+      }
+
       @media (max-width: 767px) {
-        font-size: clamp(4rem, 22vw, 8rem);
+        font-size: clamp(3.5rem, 22vw, 8rem);
         -webkit-text-stroke: 3px #9d6b53;
         white-space: nowrap;
       }
-    }
 
-    // Mobile: anchor to top left instead
-    @media (max-width: 767px) {
-      bottom: auto;
-      right: auto;
-      top: 2rem;
-      left: 2.5rem;
+      @media (max-width: 479px) {
+        font-size: clamp(3rem, 24vw, 6rem);
+        -webkit-text-stroke: 2px #9d6b53;
+      }
     }
   }
 
-  // ── Eyebrow — tracks just above the title on both desktop & mobile ──
+  // ── Eyebrow — above title on desktop, above title on mobile ──
   .about-eyebrow {
     font-size: 1rem;
     letter-spacing: 0.22em;
@@ -105,46 +127,55 @@
     color: #9d6b53;
     font-weight: 500;
     position: absolute;
+    white-space: nowrap;
 
-    // Desktop: above the bottom-right title
-    bottom: calc(20vw * 0.65 + 2rem);
-    right: 42rem;
+    // Desktop: floats just above the bottom-right title block
+    bottom: calc(20vw * 0.85 + 1.5rem);
+    right: 60rem;
 
-    @media (min-width: 1920px) {
-      bottom: calc(20vw * 0.65 + 2rem);
-      right: 42rem;
+    @media (min-width: 1921px) {
+      bottom: calc(22vw * 0.85 + 1.5rem);
+      font-size: 1.1rem;
     }
 
-    @media (max-width: 1440px) {
-      bottom: calc(20vw * 0.8 + 1.5rem);
-      right: 37rem;
+    @media (min-width: 1201px) and (max-width: 1920px) {
+      bottom: calc(20vw * 0.85 + 1.25rem);
+      right: 40rem;
+    }
+
+    @media (max-width: 1200px) {
+      bottom: calc(20vw * 0.85 + 1rem);
     }
 
     @media (max-width: 1024px) {
-      bottom: calc(20vw * 0.85 + 1rem);
-      right: 2rem;
+      bottom: calc(20vw * 0.85 + 0.75rem);
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
     }
 
-    // Mobile: sits just above the title which is at top: 2rem
-    // title height = clamp(4rem, 22vw, 8rem) × 0.85 line-height
-    // eyebrow goes just above that
+    // Mobile: in-flow, sits just above the in-flow title
     @media (max-width: 767px) {
+      position: static;
+      order: -2; // eyebrow → title → description
       font-size: 0.75rem;
-      letter-spacing: 0.16em;
-      bottom: auto;
-      right: auto;
-      left: 3.5rem;
-      // top of title is 2rem, eyebrow sits ~1.4rem above the title text
-      top: calc(2rem - 1.4rem);
+      letter-spacing: 0.15em;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 0.25rem;
+    }
+
+    @media (max-width: 479px) {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
     }
   }
 
-  // ── Description ──
+  // ── Description ──────────────────────────────────────────
   .about-description {
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-size: clamp(1rem, 2.5vw, 1.7rem);
     width: 100%;
     max-width: 50%;
-    line-height: 1.2;
+    line-height: 1.3;
     font-weight: 100;
     color: #9d6b53;
     text-align: left;
@@ -155,53 +186,80 @@
     @media (min-width: 1921px) {
       max-width: 40%;
       padding-left: 5rem;
-      font-size: clamp(1.4rem, 1.8vw, 2rem);
+      font-size: clamp(1.4rem, 1.6vw, 2rem);
+    }
+
+    @media (min-width: 1201px) and (max-width: 1920px) {
+      max-width: 52%;
+      padding-left: 3rem;
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 1200px) {
+      max-width: 55%;
+      padding-left: 2rem;
     }
 
     @media (max-width: 1024px) {
       max-width: 60%;
+      padding-left: 1.5rem;
     }
 
     @media (max-width: 767px) {
-      max-width: 100%;
+      max-width: 85%;
       padding-left: 0;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      font-size: clamp(1.2rem, 3.5vw, 1.3rem);
+      font-size: clamp(0.95rem, 3.5vw, 1.3rem);
+      order: 1; // comes after title
+    }
+
+    @media (max-width: 479px) {
+      max-width: 95%;
+      font-size: clamp(0.9rem, 3.8vw, 1.1rem);
     }
 
     br {
-      @media (max-width: 480px) {
+      @media (max-width: 767px) {
         display: none;
       }
     }
   }
 
-  // ── Quote ──
+  // ── Quote ────────────────────────────────────────────────
   .about-quote {
     margin: 2rem 0 1.5rem;
     padding-left: 1.5rem;
     border-left: 3px solid #9d6b53;
     font-style: italic;
     color: #9d6b53;
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     line-height: 1.5;
     font-weight: 900;
 
     cite {
       display: block;
       margin-top: 0.5rem;
-      font-size: 1rem;
+      font-size: clamp(0.8rem, 1.2vw, 1rem);
       color: #9d6b53;
       font-style: normal;
       font-weight: 400;
     }
 
-    @media (max-width: 768px) {
-      font-size: 1rem;
+    @media (max-width: 1024px) {
+      margin: 1.75rem 0 1.25rem;
+    }
+
+    @media (max-width: 767px) {
+      font-size: clamp(0.85rem, 3vw, 1rem);
       padding-left: 1rem;
       margin: 1.5rem 0;
+      border-left-width: 2px;
+      text-align: left; // keep quote left-aligned even on mobile
+    }
+
+    @media (max-width: 479px) {
+      padding-left: 0.75rem;
+      margin: 1.25rem 0;
     }
   }
 }

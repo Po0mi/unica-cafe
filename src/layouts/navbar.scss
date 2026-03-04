@@ -89,14 +89,45 @@
     font-weight: 600;
     font-size: clamp(1rem, 5vw, 1.2rem);
     transition: color 0.3s ease;
+    position: relative; // needed for ::after
 
     &:hover {
       color: #774936;
     }
 
+    // ── Active indicator — small dot to the left of the link ──
     &.active {
       color: #774936;
       font-weight: 600;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: -1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #9d6b53;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+    }
+
+    // Keep the pseudo-element reserved on non-active so layout doesn't shift
+    &:not(.active)::after {
+      content: "";
+      position: absolute;
+      left: -1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #9d6b53;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
   }
 }
@@ -154,7 +185,6 @@
   padding: 0.5rem 0;
   z-index: 998;
 
-  // Subtle grain texture to match site
   &::before {
     content: "";
     position: absolute;
@@ -179,7 +209,7 @@
   position: relative;
   transition: padding-left 0.3s cubic-bezier(0.65, 0.01, 0.05, 0.99);
 
-  // Hover sweep — matches accordion-trigger pattern
+  // Hover sweep
   &::before {
     content: "";
     position: absolute;
@@ -188,6 +218,24 @@
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s cubic-bezier(0.65, 0.01, 0.05, 0.99);
+  }
+
+  // ── Active indicator — vertical bar on the left edge ──
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15%;
+    bottom: 15%;
+    width: 3px;
+    border-radius: 0 2px 2px 0;
+    background-color: #9d6b53;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: center;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s cubic-bezier(0.65, 0.01, 0.05, 0.99);
   }
 
   &:last-child {
@@ -207,8 +255,16 @@
     }
   }
 
-  &.active .dropdown-index {
-    opacity: 0.7;
+  // Active-only: reveal the bar
+  &.active {
+    &::after {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    .dropdown-index {
+      opacity: 0.7;
+    }
   }
 }
 
