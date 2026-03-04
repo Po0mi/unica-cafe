@@ -85,14 +85,9 @@
     color: #9d6b53;
     z-index: 3;
 
-    // Ultra-wide monitors (1921px–2560px)
-    @media (min-width: 1921px) and (max-width: 2560px) {
-      font-size: clamp(2.5rem, 30vw, 30rem);
-    }
-
     // Large screens around 1440px
     @media (min-width: 1201px) and (max-width: 1920px) {
-      font-size: clamp(2.5rem, 30vw, 30rem);
+      font-size: clamp(2.5rem, 30vw, 29rem);
       text-align: left;
     }
 
@@ -148,12 +143,6 @@
 
     &.visible {
       opacity: 1;
-    }
-
-    @media (min-width: 1921px) and (max-width: 2560px) {
-      font-size: clamp(3rem, 5vw, 8rem);
-      right: 2rem;
-      bottom: 0;
     }
 
     @media (min-width: 1201px) and (max-width: 1920px) {
