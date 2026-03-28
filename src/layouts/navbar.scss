@@ -78,10 +78,7 @@
 // ── DESKTOP MENU ──
 .desktop-menu {
   display: flex;
-  gap: 0rem;
-  margin-top: 5rem;
-  align-items: flex-end;
-  flex-direction: column;
+  gap: 1.5rem;
 
   .nav-link {
     text-decoration: none;
@@ -103,7 +100,7 @@
       &::after {
         content: "";
         position: absolute;
-        left: -1rem;
+        left: -0.8rem;
         top: 50%;
         transform: translateY(-50%);
         width: 5px;
@@ -179,7 +176,7 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: #968d7e;
+  background: #ada495;
   border-top: 1px solid rgba(157, 107, 83, 0.25);
   border-bottom: 1px solid rgba(157, 107, 83, 0.25);
   padding: 0.5rem 0;

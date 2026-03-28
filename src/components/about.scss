@@ -45,7 +45,7 @@
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: relative;
     z-index: 5;
@@ -83,7 +83,7 @@
       font-size: clamp(4rem, 20vw, 20rem);
       font-weight: 700;
       line-height: 0.85;
-      -webkit-text-stroke: 7px #9d6b53;
+      -webkit-text-stroke: 4px #9d6b53;
       color: transparent;
       white-space: nowrap;
       display: block;
@@ -119,47 +119,44 @@
     }
   }
 
-  // ── Description ──────────────────────────────────────────
+  // ── Description (redesigned: centered & wide) ──────────────────────────
   .about-description {
     font-size: clamp(1rem, 2.5vw, 1.7rem);
     width: 100%;
-    max-width: 50%;
+    max-width: 85%;
     line-height: 1.3;
     font-weight: 100;
     color: #9d6b53;
     text-align: left;
-    padding-left: 4rem;
+    padding-left: 0;
+    margin: 0 auto;
     position: relative;
     z-index: 10;
 
     @media (min-width: 1921px) {
-      max-width: 40%;
-      padding-left: 5rem;
+      max-width: 70%;
       font-size: clamp(1.4rem, 1.6vw, 2rem);
     }
 
     @media (min-width: 1201px) and (max-width: 1920px) {
-      max-width: 52%;
-      padding-left: 3rem;
+      max-width: 75%;
       font-size: 1.4rem;
     }
 
     @media (max-width: 1200px) {
-      max-width: 55%;
-      padding-left: 2rem;
+      max-width: 80%;
     }
 
     @media (max-width: 1024px) {
-      max-width: 60%;
-      padding-left: 1.5rem;
+      max-width: 85%;
     }
 
     @media (max-width: 767px) {
-      max-width: 85%;
-      padding-left: 0;
+      max-width: 90%;
       text-align: center;
+      padding-left: 0;
       font-size: clamp(0.95rem, 3.5vw, 1.3rem);
-      order: 1; // comes after title
+      order: 1;
     }
 
     @media (max-width: 479px) {
